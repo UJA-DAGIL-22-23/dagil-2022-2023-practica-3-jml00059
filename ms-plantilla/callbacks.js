@@ -14,10 +14,10 @@ const faunadb = require('faunadb'),
     q = faunadb.query;
 
 const client = new faunadb.Client({
-    secret: '¿¿¿ CLAVE SECRETA EN FAUNA PARA ESTA BBDD???',
+    secret: 'fnAE_WninLAAzfqmrvLN0OcuS9InDrH4V2pxVP6s',
 });
 
-const COLLECTION = "¿¿¿ COLECCION ???"
+const COLLECTION = "Gimnasia"
 
 // CALLBACKS DEL MODELO
 
@@ -96,6 +96,17 @@ const CB_OTHERS = {
                 autor: "¿¿¿ AUTOR ???",
                 email: "¿¿¿ EMAIL ???",
                 fecha: "¿¿¿ FECHA ???"
+            });
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
+    MostrarNombres: async (req, res) => {
+        try {
+            CORS(res).status(200).json(
+                { mensaje: "Muestra solo el nombre de los jugadores" 
+                
             });
         } catch (error) {
             CORS(res).status(500).json({ error: error.description })

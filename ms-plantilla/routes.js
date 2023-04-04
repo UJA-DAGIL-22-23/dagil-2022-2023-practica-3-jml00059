@@ -46,6 +46,14 @@ router.get("/test_db", async (req, res) => {
     }
 });
 
+router.get("/muestrajugadores", async (req, res) => {
+    try {
+        await callbacks.MostrarNombres(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 
 // Exporto el módulo para poder usarlo en server
 module.exports = router;

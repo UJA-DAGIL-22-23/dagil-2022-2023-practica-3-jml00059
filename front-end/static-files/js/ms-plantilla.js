@@ -92,6 +92,25 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
     Frontend.Article.actualizar("Plantilla Acerca de", mensajeAMostrar)
 }
 
+Plantilla.listadoNombresJugadores = function (datosDescargados) {
+    // Si no se ha proporcionado valor para jugadores
+    jugadores = jugadores || []
+  
+    // Si jugadores NO es un array
+    if (!Array.isArray(jugadores)) jugadores = []
+  
+    const listaJugadores = jugadores.map(jugador => `<li>${jugador.nombre} ${jugador.apellidos}</li>`).join('')
+  
+    const mensajeAMostrar = `<div>
+      <h2>Listado de jugadores:</h2>
+      <ul>
+        ${listaJugadores}
+      </ul>
+    </div>`
+  
+    Frontend.Article.actualizar("Plantilla Jugadores", mensajeAMostrar)
+  }
+
 
 /**
  * Función principal para responder al evento de elegir la opción "Home"
@@ -105,6 +124,10 @@ Plantilla.procesarHome = function () {
  */
 Plantilla.procesarAcercaDe = function () {
     this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
+}
+
+Plantilla.muestraJugadores = function () {
+    this.descargarRuta("/plantilla/muestrajugadores", this.listadoNombresJugadores);
 }
 
 
