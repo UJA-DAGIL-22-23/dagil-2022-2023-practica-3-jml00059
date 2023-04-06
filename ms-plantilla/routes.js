@@ -46,9 +46,12 @@ router.get("/test_db", async (req, res) => {
     }
 });
 
-router.get("/muestrajugadores", async (req, res) => {
+/**
+ * Devuelve todas las personas que hay en la BBDD
+ */
+router.get("/getTodas", async (req, res) => {
     try {
-        await callbacks.MostrarNombres(req, res)
+        await callbacks.getTodas(req, res)
     } catch (error) {
         console.log(error);
     }

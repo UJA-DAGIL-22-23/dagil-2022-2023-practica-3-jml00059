@@ -92,25 +92,6 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
     Frontend.Article.actualizar("Plantilla Acerca de", mensajeAMostrar)
 }
 
-Plantilla.listadoNombresJugadores = function (datosDescargados) {
-    // Si no se ha proporcionado valor para jugadores
-    jugadores = jugadores || []
-  
-    // Si jugadores NO es un array
-    if (!Array.isArray(jugadores)) jugadores = []
-  
-    const listaJugadores = jugadores.map(jugador => `<li>${jugador.nombre} ${jugador.apellidos}</li>`).join('')
-  
-    const mensajeAMostrar = `<div>
-      <h2>Listado de jugadores:</h2>
-      <ul>
-        ${listaJugadores}
-      </ul>
-    </div>`
-  
-    Frontend.Article.actualizar("Plantilla Jugadores", mensajeAMostrar)
-  }
-
 
 /**
  * Función principal para responder al evento de elegir la opción "Home"
@@ -119,16 +100,84 @@ Plantilla.procesarHome = function () {
     this.descargarRuta("/plantilla/", this.mostrarHome);
 }
 
-/**
- * Función principal para responder al evento de elegir la opción "Acerca de"
- */
+Plantilla.listar = function () {
+    this.recupera(this.imprime);
+}
+
+Plantilla.pieTable = function () {
+    return "</tbody></table>";
+}
+
+Plantilla.imprime = function (vector) {
+    //console.log( vector ) // Para comprobar lo que hay en vector
+    let msj = "";
+    msj += Plantilla.cabeceraTable();
+    vector.forEach(e => msj += Plantilla.cuerpoTr(e))
+    msj += Plantilla.pieTable();
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar( "Listado de proyectos", msj )
+
+}
+
+
+Plantilla.recupera = async function (callBackFn) {
+    let response = null
+
+    // Intento conectar con el microservicio personas
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodas"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todas las persoans que se han descargado
+    let vectorPersonas = null
+    if (response) {
+        vectorPersonas = await response.json()
+        callBackFn(vectorPersonas.data)
+    }
+}
+
+Plantilla.cabeceraTable = function () {
+    return `<table class="listado-proyectos">
+        <thead>
+        <th>Nombre</th><th>Fecha</th><th>Pais</th><th>Edad</th><th>Modalidad</th><th>Grupo</th><th>AniosJJPP</th>
+        </thead>
+        <tbody>
+    `;
+}
+
+Plantilla.cuerpoTr = function (p) {
+    const d = p.data
+    const Nombre = d.nombre;
+    const fecha = d.fechaNacimiento;
+    const Pais = d.pais;
+    const Edad=d.edad;
+    const Modalidad=d.modalidad;
+    const Grupo=d.grupo;
+    const AniosJJOO=d.aniosJJOO;
+
+    return `<tr title="${p.ref['@ref'].id}">
+    <td>${Nombre}</td>
+    <td>${fecha.dia}/${fecha.mes}/${fecha.año}</td>
+    <td>${Pais}</td>
+    <td>${Edad}</td>
+    <td>${Modalidad}</td>
+    <td>${Grupo}</td>
+    <td>${AniosJJOO}</td>
+    </tr>
+    `;
+}
+
 Plantilla.procesarAcercaDe = function () {
     this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
 }
 
-Plantilla.muestraJugadores = function () {
-    this.descargarRuta("/plantilla/muestrajugadores", this.listadoNombresJugadores);
-}
 
 
 

@@ -61,6 +61,39 @@ const CB_MODEL_SELECTS = {
         }
     },
 
+    getTodas: async (req, res) => {
+        try {
+            let personas = await client.query(
+                q.Map(
+                    q.Paginate(q.Documents(q.Collection(COLLECTION))),
+                    q.Lambda("X", q.Get(q.Var("X")))
+                )
+            )
+            // console.log( personas ) // Para comprobar qué se ha devuelto en personas
+            CORS(res)
+                .status(200)
+                .json(personas)
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
+    getPorId: async (req, res) => {
+        try {
+            // console.log( "getPorId req", req.params.idPersona ) // req.params contiene todos los parámetros de la llamada
+            let persona = await client.query(
+                q.Get(q.Ref(q.Collection(COLLECTION), req.params.idPersona))
+            )
+            // console.log( persona ) // Para comprobar qué se ha devuelto en persona
+            CORS(res)
+                .status(200)
+                .json(persona)
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+    },
+
+
 }
 
 
@@ -93,20 +126,9 @@ const CB_OTHERS = {
         try {
             CORS(res).status(200).json({
                 mensaje: "Microservicio MS Plantilla: acerca de",
-                autor: "¿¿¿ AUTOR ???",
-                email: "¿¿¿ EMAIL ???",
-                fecha: "¿¿¿ FECHA ???"
-            });
-        } catch (error) {
-            CORS(res).status(500).json({ error: error.description })
-        }
-    },
-
-    MostrarNombres: async (req, res) => {
-        try {
-            CORS(res).status(200).json(
-                { mensaje: "Muestra solo el nombre de los jugadores" 
-                
+                autor: "Javier Martinez",
+                email: "jml00059@red.ujaen.es",
+                fecha: "30/03/2023"
             });
         } catch (error) {
             CORS(res).status(500).json({ error: error.description })
