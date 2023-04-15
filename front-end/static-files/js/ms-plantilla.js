@@ -177,7 +177,3 @@ Plantilla.cuerpoTr = function (p) {
 Plantilla.procesarAcercaDe = function () {
     this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
 }
-
-
-
-

@@ -93,7 +93,6 @@ const CB_MODEL_SELECTS = {
         }
     },
 
-
 }
 
 
@@ -126,7 +125,7 @@ const CB_OTHERS = {
         try {
             CORS(res).status(200).json({
                 mensaje: "Microservicio MS Plantilla: acerca de",
-                autor: "Javier Martinez",
+                autor: "Javier Martínez López",
                 email: "jml00059@red.ujaen.es",
                 fecha: "30/03/2023"
             });
