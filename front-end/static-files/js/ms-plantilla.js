@@ -171,7 +171,7 @@ Plantilla.procesarAcercaDe = function () {
 }
 
 
-Plantilla.listarAlfb = function () { //// es asincrona -> No TDD
+Plantilla.listarAlfb = function () { // es asincrona -> No TDD
     (this.recuperaAlf(this.imprimee));
 }
 
