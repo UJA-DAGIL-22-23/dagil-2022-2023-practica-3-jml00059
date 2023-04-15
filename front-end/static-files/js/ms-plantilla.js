@@ -228,7 +228,7 @@ Plantilla.cabeceraTable = function () { //TDD hecho
     `;
 }
 
-Plantilla.cuerpoTr = function (p) {
+Plantilla.cuerpoTr = function (p) { //falta arreglarlo 
     const d = p.data
     const Nombre = d.nombre;
     const fecha = d.fechaNacimiento;
@@ -249,5 +249,138 @@ Plantilla.cuerpoTr = function (p) {
     </tr>
     `;
 }
+
+Plantilla.personaComoFormulario = function (persona) {
+    return Plantilla.plantillaFormularioPersona.actualiza( persona );
+}
+
+Plantilla.imprimeUnaPersona = function (persona) {
+    // console.log(persona) // Para comprobar lo que hay en vector
+    let msj = Plantilla.personaComoFormulario(persona);
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar("Mostrar a Marta Ruiz", msj)
+
+    // Actualiza el objeto que guarda los datos mostrados
+    Plantilla.almacenaDatos(persona)
+}
+
+
+Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) {
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getPorId/" + idPersona
+        const response = await fetch(url);
+            if (response) {
+                const persona = await response.json()
+                callBackFn(persona)
+            }
+    } catch (error) {
+            alert("ErrorRecuperaUnaPersona: No se han podido acceder al API Gateway")
+            console.error(error)
+        }
+}
+
+Plantilla.mostrarP = function (idPersona) {
+    this.recuperaUnaPersona(idPersona, this.imprimeUnaPersona);
+}
+
+Plantilla.form = {
+    ID: "form-persona-id",
+    NOMBRE: "form-persona-nombre",
+    FECHA: "form-persona-fecha",
+    PAIS: "form-persona-pais",
+    EDAD: "form-persona-edad",
+    MODALIDAD: "form-persona-modalidad",
+    GRUPO: "form-persona-grupo",
+    AniosJJOO: "form-persona-aniosjjoo"
+}
+
+Plantilla.plantillaTags = {
+    "ID": "### ID ###",
+    "NOMBRE": "### NOMBRE ###",
+    "FECHA": "### FECHA ###",
+    "PAIS": "### PAIS ###",
+    "EDAD": "### EDAD ###",
+    "MODALIDAD": "### MODALIDAD ###",
+    "GRUPO": "### GRUPO ###",
+    "AniosJJOO": "### AniosJJOO ###",
+}
+
+Plantilla.sustituyeTags = function (plantilla, persona) {
+    return plantilla
+        .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), persona.ref['@ref'].id)
+        .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
+        .replace(new RegExp(Plantilla.plantillaTags.FECHA, 'g'), persona.data.fecha)
+        .replace(new RegExp(Plantilla.plantillaTags.PAIS, 'g'), persona.data.pais)
+        .replace(new RegExp(Plantilla.plantillaTags.EDAD, 'g'), persona.data.edad)
+        .replace(new RegExp(Plantilla.plantillaTags.MODALIDAD, 'g'), persona.data.modalidad)
+        .replace(new RegExp(Plantilla.plantillaTags.GRUPO, 'g'), persona.data.grupo)
+        .replace(new RegExp(Plantilla.plantillaTags.AniosJJOO, 'g'), persona.data.aniosJJOO)
+}
+
+Plantilla.plantillaFormularioPersona = {}
+
+Plantilla.plantillaFormularioPersona.actualiza = function (persona) {
+    return Plantilla.sustituyeTags(this.formulario, persona)
+}
+
+
+Plantilla.plantillaFormularioPersona.formulario = `
+<form method='post' action=''>
+    <table class="listado-proyectos">
+        <thead>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Pais</th>
+            <th></th>
+            <th>Edad</th>
+            <th></th>
+            <th>Modalidad</th>
+            <th></th>
+            <th>Grupo</th>
+            <th>AniosJJOO</th>
+        </thead>
+        <tbody>
+            <tr title="${Plantilla.plantillaTags.ID}">
+                <td><input type="text" class="form-persona-elemento" disabled id="form-persona-id"
+                        value="${Plantilla.plantillaTags.ID}" 
+                        name="id_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-nombre" required value="${Plantilla.plantillaTags.NOMBRE}" 
+                        name="nombre_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-pais" required value="${Plantilla.plantillaTags.PAIS}" 
+                        name="pais_persona"/></td>
+                <td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-edad" required value="${Plantilla.plantillaTags.EDAD}" 
+                        name="edad_persona"/></td>
+                <td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-modalidad" required value="${Plantilla.plantillaTags.MODALIDAD}" 
+                        name="modalidad_persona"/></td>
+                <td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-grupo" required value="${Plantilla.plantillaTags.GRUPO}" 
+                        name="grupo_persona"/></td>
+                <td><input type="text" class="form-persona-elemento editable" disabled
+                        id="form-persona-aniosjjoo" required value="${Plantilla.plantillaTags.AniosJJOO}" 
+                        name="aniosjjoo_persona"/></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+`;
+
+
+Plantilla.personaMostrada = null
+
+Plantilla.almacenaDatos = function (persona) {
+    Plantilla.personaMostrada = persona;
+}
+
+
+
+
 
 
