@@ -108,16 +108,15 @@ Plantilla.pieTable = function () {
     return "</tbody></table>";
 }
 
-Plantilla.imprime = function (vector) {
+Plantilla.imprimee = function (vector) {
     //console.log( vector ) // Para comprobar lo que hay en vector
     let msj = "";
-    msj += Plantilla.cabeceraTable();
-    vector.forEach(e => msj += Plantilla.cuerpoTr(e))
+    msj += Plantilla.cabeceraTablee();
+    vector.forEach(e => msj += Plantilla.cuerpoTrr(e))
     msj += Plantilla.pieTable();
 
     // Borro toda la info de Article y la sustituyo por la que me interesa
     Frontend.Article.actualizar( "Listado de proyectos", msj )
-
 }
 
 
@@ -143,37 +142,31 @@ Plantilla.recupera = async function (callBackFn) {
     }
 }
 
-Plantilla.cabeceraTable = function () {
+Plantilla.listarPersona = function () {
+    this.recupera(this.imprimee);
+}
+
+Plantilla.cabeceraTablee = function () {
     return `<table class="listado-proyectos">
         <thead>
-        <th>Nombre</th><th>Fecha</th><th>Pais</th><th>Edad</th><th>Modalidad</th><th>Grupo</th><th>AniosJJPP</th>
+        <th>Nombre de los participantes</th>
         </thead>
         <tbody>
     `;
 }
 
-Plantilla.cuerpoTr = function (p) {
+Plantilla.cuerpoTrr = function (p) {
     const d = p.data
     const Nombre = d.nombre;
-    const fecha = d.fechaNacimiento;
-    const Pais = d.pais;
-    const Edad=d.edad;
-    const Modalidad=d.modalidad;
-    const Grupo=d.grupo;
-    const AniosJJOO=d.aniosJJOO;
 
     return `<tr title="${p.ref['@ref'].id}">
     <td>${Nombre}</td>
-    <td>${fecha.dia}/${fecha.mes}/${fecha.año}</td>
-    <td>${Pais}</td>
-    <td>${Edad}</td>
-    <td>${Modalidad}</td>
-    <td>${Grupo}</td>
-    <td>${AniosJJOO}</td>
     </tr>
     `;
 }
 
+
 Plantilla.procesarAcercaDe = function () {
     this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
 }
+
