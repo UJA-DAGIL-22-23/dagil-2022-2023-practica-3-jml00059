@@ -207,3 +207,47 @@ Plantilla.recuperaAlf = async function (callBackFn) { // es asincrona -> No TDD
         callBackFn(vectorProyectos.data)
     }
 }
+
+Plantilla.imprime = function (vector) {
+    //console.log( vector ) // Para comprobar lo que hay en vector
+    let msj = "";
+    msj += Plantilla.cabeceraTable();
+    vector.forEach(e => msj += Plantilla.cuerpoTr(e))
+    msj += Plantilla.pieTable();
+
+    // Borro toda la info de Article y la sustituyo por la que me interesa
+    Frontend.Article.actualizar( "Listado de proyectos", msj )
+}
+
+Plantilla.cabeceraTable = function () {
+    return `<table class="listado-proyectos">
+        <thead>
+        <th>Nombre</th><th>Fecha</th><th>Pais</th><th>Edad</th><th>Modalidad</th><th>Grupo</th><th>AniosJJPP</th>
+        </thead>
+        <tbody>
+    `;
+}
+
+Plantilla.cuerpoTr = function (p) {
+    const d = p.data
+    const Nombre = d.nombre;
+    const fecha = d.fechaNacimiento;
+    const Pais = d.pais;
+    const Edad=d.edad;
+    const Modalidad=d.modalidad;
+    const Grupo=d.grupo;
+    const AniosJJOO=d.aniosJJOO;
+
+    return `<tr title="${p.ref['@ref'].id}">
+    <td>${Nombre}</td>
+    <td>${fecha.dia}/${fecha.mes}/${fecha.año}</td>
+    <td>${Pais}</td>
+    <td>${Edad}</td>
+    <td>${Modalidad}</td>
+    <td>${Grupo}</td>
+    <td>${AniosJJOO}</td>
+    </tr>
+    `;
+}
+
+
