@@ -375,7 +375,7 @@ describe("Plantilla.cuerpoTr", function() { // EN ESTA FUNCION ES DONDE ME DA ER
       </tr>`;
   
       const result = Plantilla.cuerpoTr(proyecto);
-  
+      
       expect(result).toBe(expectedOutput);
     });
   });
