@@ -124,6 +124,95 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
 })
 
 
+describe("Plantilla.imprime", function () {
+    it("Debe mostrar una tabla con los datos de las personas de la plantilla",
+        function () {
+            const vector = [
+                {
+                    ref: { "@ref": { id: "ref persona 1" } },
+                    data: { 
+                        nombre: { nombre: "Marta Ruiz"},
+                    }
+                },
+                {
+                    ref: { "@ref": { id: "ref persona 2" } },
+                    data: { 
+                        nombre: { nombre: "Antonio Juan"},
+                       
+                }
+                }
+            ];
+  
+            const expectedMsj = Plantilla.cabeceraTablee() + Plantilla.cuerpoTrr(vector[0]) + Plantilla.cuerpoTrr(vector[1]) + Plantilla.pieTable();
+            spyOn(Frontend.Article, 'actualizar');
+            Plantilla.imprimee(vector);
+            expect(Frontend.Article.actualizar).toHaveBeenCalledWith('Listado de proyectos', expectedMsj);
+        });
+  });
+
+
+  describe("Plantilla.pieTable ", function () {
+    it("Debe devolver el codigo del pie de tabla",
+        function () {
+            expect(Plantilla.pieTable()).toBe("</tbody></table>");
+        });
+  });
+
+
+  describe("Plantilla.cabeceraTablee", function() {
+    it('existe la función cabeceraTablee', () => {
+      expect(Plantilla.cabeceraTablee).toBeDefined();
+    });
+  
+    it('devuelve una cadena de texto', () => {
+      const resultado = Plantilla.cabeceraTablee();
+      expect(typeof resultado).toBe('string');
+    });
+  
+    it('devuelve una tabla con la clase "listado-proyectos"', () => {
+      const resultado = Plantilla.cabeceraTablee();
+      expect(resultado).toContain('<table class="listado-proyectos"');
+    });
+  
+    it('devuelve una tabla con la etiqueta "thead"', () => {
+      const resultado = Plantilla.cabeceraTablee();
+      expect(resultado).toContain('<thead>');
+    });
+  
+    it('devuelve una tabla', () => {
+      const resultado = Plantilla.cabeceraTablee();
+      expect(resultado).toContain('<th>Nombre de los participantes</th>');
+    });
+  });
+
+
+  describe("Plantilla.cuerpoTrr", function() {
+    it('devuelve una fila de tabla HTML con el título correcto', () => {
+      const proyecto = { ref: { '@ref': { id: '359558425872433356' } }, data: { nombre: 'Marta Ruiz' } };
+      const resultado = Plantilla.cuerpoTrr(proyecto);
+      expect(resultado).toContain('<td>Marta Ruiz</td>');
+    });
+  });
+
+  /*describe("Plantilla.listarPersona", () => {
+    it('debería llamar a las funciones recupera e imprimee', () => {
+      const recuperaSpy = jest.spyOn(Plantilla.recupera, 'recupera');
+      const imprimeeSpy = jest.spyOn(Plantilla.imprimee, 'imprimee');
+  
+      Plantilla.listarPersona();        No me funciona porque tengo que instalar node app.js para que me pueda coger el método jest y 
+                                        el metodo require. No me fiaba de instalarlo por si no me funcionaba la aplicacion
+  
+      expect(recuperaSpy).toHaveBeenCalled();
+      expect(imprimeeSpy).toHaveBeenCalled();
+    });
+  });*/ 
+
+  
+  
+  
+
+
+
 
 
 

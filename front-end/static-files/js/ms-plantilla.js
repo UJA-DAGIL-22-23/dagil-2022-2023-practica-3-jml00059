@@ -104,11 +104,11 @@ Plantilla.listar = function () {
     this.recupera(this.imprime);
 }
 
-Plantilla.pieTable = function () {
+Plantilla.pieTable = function () { //hecho el TDD
     return "</tbody></table>";
 }
 
-Plantilla.imprimee = function (vector) {
+Plantilla.imprimee = function (vector) { //hecho el TDD
     //console.log( vector ) // Para comprobar lo que hay en vector
     let msj = "";
     msj += Plantilla.cabeceraTablee();
@@ -146,7 +146,7 @@ Plantilla.listarPersona = function () {
     this.recupera(this.imprimee);
 }
 
-Plantilla.cabeceraTablee = function () {
+Plantilla.cabeceraTablee = function () { //hecho el TDD
     return `<table class="listado-proyectos">
         <thead>
         <th>Nombre de los participantes</th>
@@ -155,7 +155,7 @@ Plantilla.cabeceraTablee = function () {
     `;
 }
 
-Plantilla.cuerpoTrr = function (p) {
+Plantilla.cuerpoTrr = function (p) {  //hecho el tdd
     const d = p.data
     const Nombre = d.nombre;
 
