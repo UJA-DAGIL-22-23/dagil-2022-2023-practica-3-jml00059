@@ -208,7 +208,7 @@ Plantilla.recuperaAlf = async function (callBackFn) { // es asincrona -> No TDD
     }
 }
 
-Plantilla.imprime = function (vector) {
+Plantilla.imprime = function (vector) { // TDD hecho
     //console.log( vector ) // Para comprobar lo que hay en vector
     let msj = "";
     msj += Plantilla.cabeceraTable();
@@ -219,10 +219,10 @@ Plantilla.imprime = function (vector) {
     Frontend.Article.actualizar( "Listado de proyectos", msj )
 }
 
-Plantilla.cabeceraTable = function () {
+Plantilla.cabeceraTable = function () { //TDD hecho 
     return `<table class="listado-proyectos">
         <thead>
-        <th>Nombre</th><th>Fecha</th><th>Pais</th><th>Edad</th><th>Modalidad</th><th>Grupo</th><th>AniosJJPP</th>
+        <th>Nombre</th><th>Fecha</th><th>Pais</th><th>Edad</th><th>Modalidad</th><th>Grupo</th><th>AniosJJOO</th>
         </thead>
         <tbody>
     `;

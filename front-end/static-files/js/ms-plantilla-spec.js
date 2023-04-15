@@ -207,6 +207,179 @@ describe("Plantilla.imprime", function () {
     });
   });*/ 
 
+  /*    TDD     HU      4*/
+
+  describe("Plantilla.imprime todos los participantes", function(){
+    it("debe mostrar una tabla con todos los datos de los participantes",
+    function () {
+        const vector = [
+          {
+            ref: { "@ref": { id: "ref persona 1" } },
+            data: { 
+              nombre: "Marta Ruiz",
+              fechaNacimiento: { dia: 6, mes: 6, año: 1995 },
+              pais: "Brasil",
+              edad: 28,
+              modalidad: "pareja_mixta",
+              grupo: 1,
+              aniosJJOO: [2005,2009,2013],
+            }
+          },
+          {
+            ref: { "@ref": { id: "ref persona 2" } },
+            data: { 
+                nombre: "Antonio Juan",
+                fechaNacimiento: { dia: 5, mes: 6, año: 1999 },
+                pais: "Portugal",
+                edad: 27,
+                modalidad: "pareja_masculina",
+                grupo: 1,
+                aniosJJOO: [2013,2017],
+            }
+          }
+      ];
+        const expectedMsj = Plantilla.cabeceraTable() + Plantilla.cuerpoTr(vector[0]) + Plantilla.cuerpoTr(vector[1]) + Plantilla.pieTable();
+        spyOn(Frontend.Article, 'actualizar');
+        Plantilla.imprime(vector);
+        expect(Frontend.Article.actualizar).toHaveBeenCalledWith('Listado de proyectos', expectedMsj);
+    })
+  });
+  
+
+  /*describe("Plantilla.cabeceraTable", function(){
+    it("devuelve una cadena de texto que representa la cabecera de una tabla", 
+    function() {
+      // Arrange
+      const expected = `<table class="listado-proyectos">
+      <thead>
+      <th>Nombre</th><th>Fecha</th><th>Pais</th><th>Edad</th><th>Modalidad</th><th>Grupo</th><th>AniosJJOO</th>
+      </thead>
+      <tbody>
+      `;
+  
+      // Act
+      const result = Plantilla.cabeceraTable();
+  
+      // Assert
+      expect(result).toEqual(expected);
+    });
+  });*/
+
+  describe("Plantilla.cabeceraTablee", function() {
+    it('existe la función cabeceraTable', () => {
+      expect(Plantilla.cabeceraTable).toBeDefined();
+    });
+  
+    it('devuelve una cadena de texto', () => {
+      const resultado = Plantilla.cabeceraTable();
+      expect(typeof resultado).toBe('string');
+    });
+  
+    it('devuelve una tabla con la clase "listado-proyectos"', () => {
+      const resultado = Plantilla.cabeceraTable();
+      expect(resultado).toContain('<table class="listado-proyectos"');
+    });
+  
+    it('devuelve una tabla con la etiqueta "thead"', () => {
+      const resultado = Plantilla.cabeceraTable();
+      expect(resultado).toContain('<thead>');
+    });
+  
+    it('devuelve una tabla', () => {
+      const resultado = Plantilla.cabeceraTable();
+      expect(resultado).toContain('<th>Nombre</th>');
+    });
+
+    it('devuelve una tabla', () => {
+        const resultado = Plantilla.cabeceraTable();
+        expect(resultado).toContain('<th>Fecha</th>');
+    });
+
+    it('devuelve una tabla', () => {
+        const resultado = Plantilla.cabeceraTable();
+        expect(resultado).toContain('<th>Pais</th>');
+    });  
+
+    it('devuelve una tabla', () => {
+        const resultado = Plantilla.cabeceraTable();
+        expect(resultado).toContain('<th>Edad</th>');
+    });
+
+    it('devuelve una tabla', () => {
+        const resultado = Plantilla.cabeceraTable();
+        expect(resultado).toContain('<th>Modalidad</th>');
+    });
+      
+    it('devuelve una tabla', () => {
+        const resultado = Plantilla.cabeceraTable();
+        expect(resultado).toContain('<th>Grupo</th>');
+    });
+    
+    it('devuelve una tabla', () => {
+        const resultado = Plantilla.cabeceraTable();
+        expect(resultado).toContain('<th>AniosJJOO</th>');
+    });  
+
+  });
+  
+
+  /*describe("Plantilla.cuerpoTr", function () {
+    const p = {
+        ref: { "@ref": { id: "359558425872433356" } },
+        data: {
+            nombre: "Marta Ruiz",
+            fechaNacimiento: { dia: 6, mes: 6, año: 1995 },
+            pais: "Brasil",
+            edad: 28,
+            modalidad: "pareja_mixta",
+            grupo: 1,
+            aniosJJOO: [2005,2009,2013]
+        }
+    }
+    it("debe devolver una cadena que contenga todos los datos de la plantilla",
+        function () {
+            expect(Plantilla.cuerpoTr(p)).toBe(`<tr title="${p.ref['@ref'].id}">
+            <td>${p.data.nombre}</td>
+            <td>${p.data.fechaNacimiento.dia}/${p.data.fechaNacimiento.mes}/${p.data.fechaNacimiento.año}</td>
+            <td>${p.data.pais}</td>
+            <td>${p.data.edad}</td>
+            <td>${p.data.modalidad}</td>
+            <td>${p.data.grupo}</td>
+            <td>${p.data.aniosJJOO}</td></tr>`);
+        });
+});*/
+
+describe("Plantilla.cuerpoTr", function() { // EN ESTA FUNCION ES DONDE ME DA ERROR
+    it("debe devolver un string con los datos de un jugador", () => { 
+      const proyecto = {
+        data: {
+          nombre: "Marta Ruiz",
+          fechaNacimiento: { dia: 1, mes: 1, año: 2000 },
+          pais: "Brasil",
+          edad: 28,
+          modalidad: "pareja_mixta",
+          grupo: 1,
+          aniosJJOO: [2005, 2009, 2013]
+        },
+        ref: { "@ref": { id: "359558425872433356" } },
+      };
+  
+      const expectedOutput = `<tr title="359558425872433356">
+        <td>Marta Ruiz</td>
+        <td>1/1/2000</td>
+        <td>Brasil</td>
+        <td>28</td>
+        <td>pareja_mixta</td>
+        <td>1</td>
+        <td>2005,2009,2013</td>
+      </tr>`;
+  
+      const result = Plantilla.cuerpoTr(proyecto);
+  
+      expect(result).toBe(expectedOutput);
+    });
+  });
+  
   
   
   
