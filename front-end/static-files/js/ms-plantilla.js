@@ -170,3 +170,40 @@ Plantilla.procesarAcercaDe = function () {
     this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
 }
 
+
+Plantilla.listarAlfb = function () { //// es asincrona -> No TDD
+    (this.recuperaAlf(this.imprimee));
+}
+
+Plantilla.recuperaAlf = async function (callBackFn) { // es asincrona -> No TDD
+    let response = null
+
+    // Intento conectar con el microservicio proyectos
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodas"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todos los proyectos que se han descargado
+    let vectorProyectos = null
+    if (response) {
+        vectorProyectos = await response.json()
+        vectorProyectos.data.sort((a, b) => {
+            const nombreA = a.data.nombre.toLowerCase();
+            const nombreB = b.data.nombre.toLowerCase();
+            if (nombreA < nombreB) {
+                return -1;
+            }
+            if (nombreA > nombreB) {
+                return 1;
+            }
+            return 0;
+        });
+        callBackFn(vectorProyectos.data)
+    }
+}
