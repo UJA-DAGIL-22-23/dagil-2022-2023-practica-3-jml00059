@@ -133,10 +133,10 @@ Frontend.Article.actualizar = function (titulo, contenido) {
     return this;
 }
 
-/*Frontend.Article.actualizarBoton = function (titulo,contenido){
+Frontend.Article.actualizarBoton = function (titulo,contenido){
     this.borrar()
         .aniadirTitulo(titulo)
         .aniadirContenido(contenido)
         .mostrar()
     return this;
-}*/
+}

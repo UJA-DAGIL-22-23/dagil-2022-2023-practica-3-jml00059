@@ -123,7 +123,7 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
         })
 })
 
-                                                                                /*    TDD     HU      2*/
+                                                                              /*    TDD     HU      8*/
 
 
 describe("Plantilla.imprime", function () {
