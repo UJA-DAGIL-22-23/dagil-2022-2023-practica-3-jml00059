@@ -123,6 +123,8 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
         })
 })
 
+                                                                                /*    TDD     HU      2*/
+
 
 describe("Plantilla.imprime", function () {
     it("Debe mostrar una tabla con los datos de las personas de la plantilla",
@@ -159,6 +161,8 @@ describe("Plantilla.imprime", function () {
   });
 
 
+                                                                                          /*    TDD     HU      3*/
+
   describe("Plantilla.cabeceraTablee", function() {
     it('existe la función cabeceraTablee', () => {
       expect(Plantilla.cabeceraTablee).toBeDefined();
@@ -194,18 +198,6 @@ describe("Plantilla.imprime", function () {
     });
   });
 
-  /*describe("Plantilla.listarPersona", () => {
-    it('debería llamar a las funciones recupera e imprimee', () => {
-      const recuperaSpy = jest.spyOn(Plantilla.recupera, 'recupera');
-      const imprimeeSpy = jest.spyOn(Plantilla.imprimee, 'imprimee');
-  
-        Plantilla.listarPersona();        No me funciona porque tengo que instalar node app.js para que me pueda coger el método jest y 
-                                          el metodo require. No me fiaba de instalarlo por si no me funcionaba la aplicacion
-  
-      expect(recuperaSpy).toHaveBeenCalled();
-      expect(imprimeeSpy).toHaveBeenCalled();
-    });
-  });*/ 
 
                                                                     /*    TDD     HU      4*/
 
@@ -641,7 +633,7 @@ describe('Plantilla.plantillaFormularioPersona.actualiza', () => {
 })
 
 
-
+                                                                              /*    TDD     HU      8*/
 
 
 

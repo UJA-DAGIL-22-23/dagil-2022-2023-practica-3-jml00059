@@ -374,7 +374,32 @@ Plantilla.almacenaDatos = function (persona) { //hecho el TDD
 }
 
 
+Plantilla.listarParaForm= function (search){
+    this.recuperaBuscar(this.imprime,search);
+}
 
 
+Plantilla.recuperaBuscar = async function (callBackFn,nombre) { //no se hace TDD porque es asyncPo
+    let response = null
+
+    // Intento conectar con el microservicio personas
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodas"
+        response = await fetch(url)
+
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway")
+        console.error(error)
+        //throw error
+    }
+
+    // Muestro todas las persoans que se han descargado
+    let vectorPersonas = null
+    if (response) {
+        vectorPersonas = await response.json()
+        const filtro=vectorPersonas.data.filter(persona => persona.data.nombre === nombre)
+        callBackFn(filtro)
+    }
+}
 
 
