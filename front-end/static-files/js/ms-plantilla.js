@@ -100,7 +100,7 @@ Plantilla.procesarHome = function () {
     this.descargarRuta("/plantilla/", this.mostrarHome);
 }
 
-Plantilla.listar = function () {
+Plantilla.listar = function () { // es asincrona -> No TDD
     this.recupera(this.imprime);
 }
 
@@ -120,7 +120,7 @@ Plantilla.imprimee = function (vector) { //hecho el TDD
 }
 
 
-Plantilla.recupera = async function (callBackFn) {
+Plantilla.recupera = async function (callBackFn) { // es asincrona -> No TDD
     let response = null
 
     // Intento conectar con el microservicio personas
@@ -142,7 +142,7 @@ Plantilla.recupera = async function (callBackFn) {
     }
 }
 
-Plantilla.listarPersona = function () {
+Plantilla.listarPersona = function () { // es asincrona -> No TDD
     this.recupera(this.imprimee);
 }
 
@@ -250,18 +250,15 @@ Plantilla.cuerpoTr = function (p) { //falta arreglarlo
     `;
 }
 
-Plantilla.personaComoFormulario = function (persona) {
+Plantilla.personaComoFormulario = function (persona) { // hecho el TDD
     return Plantilla.plantillaFormularioPersona.actualiza( persona );
 }
 
-Plantilla.imprimeUnaPersona = function (persona) {
-    // console.log(persona) // Para comprobar lo que hay en vector
+Plantilla.imprimeUnaPersona = function (persona) { // hecho el TDD
     let msj = Plantilla.personaComoFormulario(persona);
 
-    // Borro toda la info de Article y la sustituyo por la que me interesa
     Frontend.Article.actualizar("Mostrar a Marta Ruiz", msj)
 
-    // Actualiza el objeto que guarda los datos mostrados
     Plantilla.almacenaDatos(persona)
 }
 
@@ -280,11 +277,11 @@ Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) { //No se 
         }
 }
 
-Plantilla.mostrarP = function (idPersona) { //No se hace TDD -> es async
+Plantilla.mostrarP = function (idPersona) { // hecho el TDD, pero no se deberia de hacer porque es asincrona
     this.recuperaUnaPersona(idPersona, this.imprimeUnaPersona);
 }
 
-Plantilla.form = {
+Plantilla.form = { //hecho el TDD
     ID: "form-persona-id",
     NOMBRE: "form-persona-nombre",
     PAIS: "form-persona-pais",
@@ -294,7 +291,7 @@ Plantilla.form = {
     AniosJJOO: "form-persona-aniosjjoo"
 }
 
-Plantilla.plantillaTags = {
+Plantilla.plantillaTags = { //hecho el TDD
     "ID": "### ID ###",
     "NOMBRE": "### NOMBRE ###",
     "PAIS": "### PAIS ###",
@@ -304,7 +301,7 @@ Plantilla.plantillaTags = {
     "AniosJJOO": "### AniosJJOO ###",
 }
 
-Plantilla.sustituyeTags = function (plantilla, persona) { //sin hacer
+Plantilla.sustituyeTags = function (plantilla, persona) { //hecho el TDD
     return plantilla
         .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), persona.ref['@ref'].id)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
@@ -317,11 +314,11 @@ Plantilla.sustituyeTags = function (plantilla, persona) { //sin hacer
 
 Plantilla.plantillaFormularioPersona = {}
 
-Plantilla.plantillaFormularioPersona.actualiza = function (persona) { //sin hacer
+Plantilla.plantillaFormularioPersona.actualiza = function (persona) { //hecho el TDD
     return Plantilla.sustituyeTags(this.formulario, persona)
 }
 
-
+//hecho el TDD
 Plantilla.plantillaFormularioPersona.formulario = ` 
 <form method='post' action=''>
     <table class="listado-proyectos">
@@ -367,7 +364,7 @@ Plantilla.plantillaFormularioPersona.formulario = `
         </tbody>
     </table>
 </form>
-`; //sin hacer
+`; //hecho el TDD
 
 
 Plantilla.personaMostrada = null

@@ -199,8 +199,8 @@ describe("Plantilla.imprime", function () {
       const recuperaSpy = jest.spyOn(Plantilla.recupera, 'recupera');
       const imprimeeSpy = jest.spyOn(Plantilla.imprimee, 'imprimee');
   
-      Plantilla.listarPersona();        No me funciona porque tengo que instalar node app.js para que me pueda coger el método jest y 
-                                        el metodo require. No me fiaba de instalarlo por si no me funcionaba la aplicacion
+        Plantilla.listarPersona();        No me funciona porque tengo que instalar node app.js para que me pueda coger el método jest y 
+                                          el metodo require. No me fiaba de instalarlo por si no me funcionaba la aplicacion
   
       expect(recuperaSpy).toHaveBeenCalled();
       expect(imprimeeSpy).toHaveBeenCalled();
@@ -244,26 +244,8 @@ describe("Plantilla.imprime", function () {
         expect(Frontend.Article.actualizar).toHaveBeenCalledWith('Listado de proyectos', expectedMsj);
     })
   });
-  
 
-  /*describe("Plantilla.cabeceraTable", function(){
-    it("devuelve una cadena de texto que representa la cabecera de una tabla", 
-    function() {
-      // Arrange
-      const expected = `<table class="listado-proyectos">
-      <thead>
-      <th>Nombre</th><th>Fecha</th><th>Pais</th><th>Edad</th><th>Modalidad</th><th>Grupo</th><th>AniosJJOO</th>
-      </thead>
-      <tbody>
-      `;
-  
-      // Act
-      const result = Plantilla.cabeceraTable();
-  
-      // Assert
-      expect(result).toEqual(expected);
-    });
-  });*/
+
 
   describe("Plantilla.cabeceraTablee", function() {
     it('existe la función cabeceraTable', () => {
@@ -323,79 +305,347 @@ describe("Plantilla.imprime", function () {
   });
   
 
-describe("Plantilla.cuerpoTr", function() {                                           // EN ESTA FUNCION ES DONDE ME DA ERROR
-    it("debe devolver un string con los datos de un jugador", () => { 
-      const proyecto = {
-        data: {
-          nombre: "Marta Ruiz",
-          fechaNacimiento: { dia: 1, mes: 1, año: 2000 },
-          pais: "Brasil",
-          edad: 28,
-          modalidad: "pareja_mixta",
-          grupo: 1,
-          aniosJJOO: [2005, 2009, 2013]
-        },
-        ref: { "@ref": { id: "359558425872433356" } },
-      };
-  
-      const expectedOutput = `<tr title="359558425872433356">
-        <td>Marta Ruiz</td>
-        <td>1/1/2000</td>
-        <td>Brasil</td>
-        <td>28</td>
-        <td>pareja_mixta</td>
-        <td>1</td>
-        <td>2005,2009,2013</td>
-      </tr>`;
-  
-      const result = Plantilla.cuerpoTr(proyecto);
-      
-      expect(result).toBe(expectedOutput);
-    });
-  });
+
 
                                                                         /*    TDD     HU      6*/
-    /*describe('Plantilla.sustituyeTags', () => {
-        it('debe sustituir correctamente las etiquetas de la plantilla', () => {
-          const plantilla = `
-            <tr title="{ID}">
-              <td>{NOMBRE}</td>
-              <td>{FECHA}</td>
-              <td>{EDAD}</td>
-              <td>{MODALIDAD}</td>
-              <td>{GRUPO}</td>
-              <td>{AniosJJOO}</td>
-            </tr>
-          `;
 
-          const persona = {
-            ref: { '@ref': { id: '359558425872433356' } },
-            data: {
-              nombre: "Marta Ruiz",
-              pais: "Brasil",
-              edad: 28,
-              modalidad: "pareja_mixta",
-              grupo: 1,
-              aniosJJOO: [2005,2009,2013]
-            }
-          };
+    describe('Plantilla.almacenaDatos', () => {
+      it('debe almacenar correctamente la persona mostrada', () => {
+        const persona = {
+          ref: { '@ref': { id: '359558425872433356' } },
+          data: {
+            nombre: "Marta Ruiz",
+            pais: "Brasil",
+            edad: 28,
+            modalidad: "pareja_mixta",
+            grupo: 1,
+            aniosJJOO: [2005,2009,2013]
+          }
+        };
 
-          const resultado = Plantilla.sustituyeTags(plantilla, persona);
-          const esperado = `
-            <tr title="359558425872433356">
-              <td>Marta Ruiz</td>
-              <td>Brasil</td>
-              <td>28</td>
-              <td>pareja_mixta</td>
-              <td>1</td>
-              <td>2005,2009,2013</td>
-            </tr>
-          `;
-          expect(resultado).toBe(esperado);
-        });
-      });*/
+    Plantilla.almacenaDatos(persona);
 
-      
+    expect(Plantilla.personaMostrada).toEqual(persona);
+  });
+});
+
+
+
+describe("Plantilla.imprimeUnaPersona", function () {
+  let persona = {
+    ref: {
+      '@ref': {
+        id: 'persona123'
+      }
+    },
+    data: {
+      nombre: 'Marta Ruiz',
+      pais: 'Brasil',
+      edad: 25,
+      modalidad: 'pareja_mixta',
+      grupo: 3,
+      aniosJJOO: [2005]
+    }
+  };
+
+  beforeEach(function () {
+    spyOn(Plantilla, 'personaComoFormulario').and.returnValue('<form></form>');
+    spyOn(Frontend.Article, 'actualizar');
+    spyOn(Plantilla, 'almacenaDatos');
+  });
+
+  it("llama a la funcion personaComoFormulario con la persona correspondiente", function () {
+    Plantilla.imprimeUnaPersona(persona);
+    expect(Plantilla.personaComoFormulario).toHaveBeenCalledWith(persona);
+  });
+
+  it("actualiza el artículo con el formulario generado por Plantilla.personaComoFormulario", function () {
+    Plantilla.imprimeUnaPersona(persona);
+    expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Mostrar a Marta Ruiz", '<form></form>');
+  });
+
+  it("almacena los datos de la persona", function () {
+    Plantilla.imprimeUnaPersona(persona);
+    expect(Plantilla.almacenaDatos).toHaveBeenCalledWith(persona);
+  });
+
+});
+
+describe("Plantilla", function() {
+  describe("personaComoFormulario", function() {
+    it("debe comprobar que la función devuelve el formulario de persona bien actualizado", function() {
+      const persona = {
+        ref: {
+          '@ref': {
+            id: '222222'
+          }
+        },
+        data: {
+          nombre: 'Marta Ruiz',
+          pais: 'Brasil',
+          edad: 25,
+          modalidad: 'pareja_mixta',
+          grupo: 3,
+          aniosJJOO: [2005]
+        }
+      };
+
+      const formulario = '<form><input type="text" name="nombre" value="' + persona.data.nombre + '">' +
+                          '<input type="text" name="pais" value="' + persona.data.pais + '">' +
+                          '<input type="number" name="edad" value="' + persona.data.edad + '">' +
+                          '<input type="text" name="modalidad" value="' + persona.data.modalidad + '">' +
+                          '<input type="number" name="grupo" value="' + persona.data.grupo + '">' +
+                          '<input type="number" name="aniosJJOO" value="' + persona.data.aniosJJOO + '">' +
+                          '<input type="hidden" name="id" value="' + persona.ref['@ref'].id + '">' +
+                          '<input type="submit" value="Enviar"></form>';
+
+      spyOn(Plantilla, 'sustituyeTags').and.returnValue(formulario);
+
+      const resultado = Plantilla.personaComoFormulario(persona);
+
+      expect(Plantilla.sustituyeTags).toHaveBeenCalledWith(Plantilla.plantillaFormularioPersona.formulario, persona);
+      expect(resultado).toBe(formulario);
+    });
+  });
+});
+
+
+describe("Plantilla.mostrarP()", function() {
+  let recuperaUnaPersonaSpy, imprimeUnaPersonaSpy;
+
+  beforeEach(function() {
+    recuperaUnaPersonaSpy = spyOn(Plantilla, "recuperaUnaPersona");
+    imprimeUnaPersonaSpy = spyOn(Plantilla, "imprimeUnaPersona");
+  });
+
+  it("debe llamar a la funcion recuperaUnaPersona() con el ID de la persona", function() {
+    const idPersona = "333";
+    Plantilla.mostrarP(idPersona);
+    expect(recuperaUnaPersonaSpy).toHaveBeenCalledWith(idPersona, jasmine.any(Function));
+  });
+
+  it("debe llamar a la funcion imprimeUnaPersona() con la persona recuperada", function() {
+    const persona = {
+      ref: { "@ref": { id: "666666" } },
+      data: {
+        nombre: 'Marta Ruiz',
+          pais: 'Brasil',
+          edad: 25,
+          modalidad: 'pareja_mixta',
+          grupo: 3,
+          aniosJJOO: [2005]
+      }
+    };
+    recuperaUnaPersonaSpy.and.callFake(function(id, callBackFn) {
+      callBackFn(persona);
+    });
+    Plantilla.mostrarP("333");
+    expect(imprimeUnaPersonaSpy).toHaveBeenCalledWith(persona);
+  });
+});
+
+
+
+describe('Plantilla.plantillaTags', () => {
+  it('debe ser un objeto con las etiquetas de la plantilla', () => {
+    const plantillaTags = Plantilla.plantillaTags;
+    expect(plantillaTags).toBeDefined();
+    expect(plantillaTags).toBeInstanceOf(Object);
+    expect(plantillaTags.ID).toBeDefined();
+    expect(plantillaTags.NOMBRE).toBeDefined();
+    expect(plantillaTags.PAIS).toBeDefined();
+    expect(plantillaTags.EDAD).toBeDefined();
+    expect(plantillaTags.MODALIDAD).toBeDefined();
+    expect(plantillaTags.GRUPO).toBeDefined();
+    expect(plantillaTags.AniosJJOO).toBeDefined();
+    expect(typeof plantillaTags.ID).toBe('string');
+    expect(typeof plantillaTags.NOMBRE).toBe('string');
+    expect(typeof plantillaTags.PAIS).toBe('string');
+    expect(typeof plantillaTags.EDAD).toBe('string');
+    expect(typeof plantillaTags.MODALIDAD).toBe('string');
+    expect(typeof plantillaTags.GRUPO).toBe('string');
+    expect(typeof plantillaTags.AniosJJOO).toBe('string');
+  });
+});
+
+
+describe('Plantilla.form', () => {
+  it('debe tener las etiquetas de formulario correctas', () => {
+    const esperado = {
+      ID: "form-persona-id",
+      NOMBRE: "form-persona-nombre",
+      PAIS: "form-persona-pais",
+      EDAD: "form-persona-edad",
+      MODALIDAD: "form-persona-modalidad",
+      GRUPO: "form-persona-grupo",
+      AniosJJOO: "form-persona-aniosjjoo"
+    };
+    expect(Plantilla.form).toEqual(esperado);
+  });
+});
+
+
+
+describe('Plantilla.plantillaFormularioPersona.formulario', () => {
+  it('debería ser una cadena de texto', () => {
+    expect(typeof Plantilla.plantillaFormularioPersona.formulario).toBe('string');
+  });
+
+  it('debería contener la etiqueta form', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('<form');
+  });
+
+  it('debería contener la etiqueta table', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('<table');
+  });
+
+  it('debería contener la etiqueta thead', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('<thead');
+  });
+
+  it('debería contener la etiqueta tbody', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('<tbody');
+  });
+
+  it('debería contener la etiqueta tr', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('<tr');
+  });
+
+  it('debería contener la etiqueta td', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('<td');
+  });
+
+  it('debería contener la etiqueta input', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('<input');
+  });
+
+  it('debería contener la etiqueta name="id_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('name="id_persona"');
+  });
+
+  it('debería contener la etiqueta name="nombre_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('name="nombre_persona"');
+  });
+
+  it('debería contener la etiqueta name="pais_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('name="pais_persona"');
+  });
+
+  it('debería contener la etiqueta name="edad_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('name="edad_persona"');
+  });
+
+  it('debería contener la etiqueta name="modalidad_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('name="modalidad_persona"');
+  });
+
+  it('debería contener la etiqueta name="grupo_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('name="grupo_persona"');
+  });
+
+  it('debería contener la etiqueta name="aniosjjoo_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario).toContain('name="aniosjjoo_persona"');
+  });
+});
+
+
+describe('Plantilla.sustituyeTags', () => {
+  it('sustituye los tags por los valores de la persona', () => {
+    // Arrange
+    const plantilla = `
+      <p>ID: ### ID ###</p>
+      <p>Nombre: ### NOMBRE ###</p>
+      <p>País: ### PAIS ###</p>
+      <p>Edad: ### EDAD ###</p>
+      <p>Modalidad: ### MODALIDAD ###</p>
+      <p>Grupo: ### GRUPO ###</p>
+      <p>Años JJOO: ### AniosJJOO ###</p>
+    `;
+    const persona = {
+      ref: { '@ref': { id: '1234567890' } },
+      data: {
+        nombre: 'Juan Pérez',
+        pais: 'México',
+        edad: 25,
+        modalidad: 'Ciclismo',
+        grupo: 'Individual',
+        aniosJJOO: '2016, 2020'
+      }
+    };
+    const expected = `
+      <p>ID: 1234567890</p>
+      <p>Nombre: Juan Pérez</p>
+      <p>País: México</p>
+      <p>Edad: 25</p>
+      <p>Modalidad: Ciclismo</p>
+      <p>Grupo: Individual</p>
+      <p>Años JJOO: 2016, 2020</p>
+    `;
+
+    // Act
+    const result = Plantilla.sustituyeTags(plantilla, persona);
+
+    // Assert
+    expect(result).toBe(expected);
+  });
+});
+
+
+describe('Plantilla.plantillaFormularioPersona.actualiza', () => {
+  const mockPersona = {
+    ref: { '@ref': { id: '1234' } },
+    data: {
+      nombre: 'Juan',
+      pais: 'España',
+      edad: 30,
+      modalidad: 'Atletismo',
+      grupo: 1,
+      aniosJJOO: 2016
+    }
+  }
+
+  it('should replace the ID tag with the persona id', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza(mockPersona)
+    expect(result.includes(mockPersona.ref['@ref'].id)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag NOMBRE por nombre', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza(mockPersona)
+    expect(result.includes(mockPersona.data.nombre)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag PAIS por pais', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza(mockPersona)
+    expect(result.includes(mockPersona.data.pais)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag EDAD por edad', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza(mockPersona)
+    expect(result.includes(mockPersona.data.edad)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag MODALIDAD por modalidad', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza(mockPersona)
+    expect(result.includes(mockPersona.data.modalidad)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag GRUPO por grupo', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza(mockPersona)
+    expect(result.includes(mockPersona.data.grupo)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag ANIOSJJOO por aniosJJOO', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza(mockPersona)
+    expect(result.includes(mockPersona.data.aniosJJOO)).toBe(true)
+  })
+})
+
+
+
+
+
+
+
       
       
 
