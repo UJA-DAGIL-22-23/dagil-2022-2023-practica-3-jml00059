@@ -100,25 +100,24 @@ Plantilla.procesarHome = function () {
     this.descargarRuta("/plantilla/", this.mostrarHome);
 }
 
-Plantilla.listar = function () {
+Plantilla.listar = function () { //no TDD -> funcion async
     this.recupera(this.imprime);
 }
 
 
-Plantilla.listarAlfb = function () {
+Plantilla.listarAlfb = function () { //no TDD -> funcion async
     (this.recuperaAlf(this.imprimee));
 }
 
-Plantilla.listarPersona = function () {
+Plantilla.listarPersona = function () { //no TDD -> funcion async
     this.recupera(this.imprimee);
 }
 
-Plantilla.pieTable = function () {
+Plantilla.pieTable = function () { //hecho el TDD
     return "</tbody></table>";
 }
 
-Plantilla.imprime = function (vector) {
-    //console.log( vector ) // Para comprobar lo que hay en vector
+Plantilla.imprime = function (vector) { //hecho el TDD
     let msj = "";
     msj += Plantilla.cabeceraTable();
     vector.forEach(e => msj += Plantilla.cuerpoTr(e))
@@ -128,8 +127,7 @@ Plantilla.imprime = function (vector) {
     Frontend.Article.actualizar( "Listado de proyectos", msj )
 }
 
-Plantilla.imprimee = function (vector) {
-    //console.log( vector ) // Para comprobar lo que hay en vector
+Plantilla.imprimee = function (vector) { //hecho el TDD
     let msj = "";
     msj += Plantilla.cabeceraTablee();
     vector.forEach(e => msj += Plantilla.cuerpoTrr(e))
@@ -140,7 +138,7 @@ Plantilla.imprimee = function (vector) {
 }
 
 
-Plantilla.recupera = async function (callBackFn) {
+Plantilla.recupera = async function (callBackFn) { //no TDD -> funcion async
     let response = null
 
     // Intento conectar con el microservicio personas
@@ -162,7 +160,7 @@ Plantilla.recupera = async function (callBackFn) {
     }
 }
 
-Plantilla.recuperaAlf = async function (callBackFn) {
+Plantilla.recuperaAlf = async function (callBackFn) { //no TDD -> funcion async
     let response = null
 
     // Intento conectar con el microservicio proyectos
@@ -195,7 +193,7 @@ Plantilla.recuperaAlf = async function (callBackFn) {
     }
 }
 
-Plantilla.cabeceraTable = function () {
+Plantilla.cabeceraTable = function () {  //hecho el TDD
     return `<table class="listado-proyectos">
         <thead>
         <th>Nombre</th><th>Fecha</th><th>Pais</th><th>Edad</th><th>Modalidad</th><th>Grupo</th><th>AniosJJOO</th>
@@ -204,7 +202,7 @@ Plantilla.cabeceraTable = function () {
     `;
 }
 
-Plantilla.cabeceraTablee = function () {
+Plantilla.cabeceraTablee = function () { //hecho el TDD
     return `<table class="listado-proyectos">
         <thead>
         <th>Nombre de los participantes</th>
@@ -213,7 +211,7 @@ Plantilla.cabeceraTablee = function () {
     `;
 }
 
-Plantilla.cuerpoTr = function (p) {
+Plantilla.cuerpoTr = function (p) { //FALTA POR HACER, ERROR
     const d = p.data
     const Nombre = d.nombre;
     const fecha = d.fechaNacimiento;
@@ -235,7 +233,7 @@ Plantilla.cuerpoTr = function (p) {
     `;
 }
 
-Plantilla.cuerpoTrr = function (p) {
+Plantilla.cuerpoTrr = function (p) { //hecho el TDD
     const d = p.data
     const Nombre = d.nombre;
 
@@ -252,7 +250,7 @@ Plantilla.procesarAcercaDe = function () {
 
 // Hasta aqui lo nuevo
 
-Plantilla.form = {
+Plantilla.form = { //hecho el TDD
     ID: "form-persona-id",
     NOMBRE: "form-persona-nombre",
     PAIS: "form-persona-pais",
@@ -265,8 +263,8 @@ Plantilla.form = {
 /// Objeto para almacenar los datos de la persona que se está mostrando
 Plantilla.personaMostrada = null
 
-// Tags que voy a usar para sustituir los campos
-Plantilla.plantillaTags = {
+
+Plantilla.plantillaTags = { //hecho el TDD
     "ID": "### ID ###",
     "NOMBRE": "### NOMBRE ###",
     "PAIS": "### PAIS ###",
@@ -278,6 +276,7 @@ Plantilla.plantillaTags = {
 
 Plantilla.plantillaFormularioPersona = {}
 
+//hecho el TDD
 Plantilla.plantillaFormularioPersona.formulario = ` 
 <form method='post' action=''>
     <table class="listado-proyectos">
@@ -325,7 +324,7 @@ Plantilla.plantillaFormularioPersona.formulario = `
 </form>
 `; //hecho el TDD
 
-
+//HECHO el TDD
 Plantilla.plantillaFormularioPersona.formulario1 = `
 <form method='post' action=''>
     <table width="100%" class="listado-proyectos">
@@ -368,6 +367,7 @@ Plantilla.plantillaFormularioPersona.formulario1 = `
     </table>
 </form>
 `;
+//hecho el TDD
 
 
 /// Plantilla para poner los datos de varias personas dentro de una tabla
@@ -378,7 +378,7 @@ Plantilla.listarParaForm= function (search){ //no se hace TDD porque es asyncPo
 }
 
 
-// Cabecera de la tabla
+//hecho el TDD
 Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-proyectos">
                     <thead>
                         <th width="20%">Id</th>
@@ -391,7 +391,7 @@ Plantilla.plantillaTablaPersonas.cabecera = `<table width="100%" class="listado-
                     <tbody>
     `;
 
-Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) {
+Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) { //no se hace TDD porque es asyncPo
     try {
         const url = Frontend.API_GATEWAY + "/plantilla/getPorId/" + idPersona
         console.log("url: ",url);
@@ -406,11 +406,11 @@ Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) {
         }
 }
 
-Plantilla.mostrar = function (idPersona) {
+Plantilla.mostrar = function (idPersona) { //no se hace TDD porque es asyncPo
     this.recuperaUnaPersona(idPersona, this.imprimeUnaPersona12);
 }
 
-// Elemento TR que muestra los datos de una persona
+//TDD SIN HACER
 Plantilla.plantillaTablaPersonas.cuerpo = `
     <tr title="${Plantilla.plantillaTags.ID}">
         <td>${Plantilla.plantillaTags.ID}</td>
@@ -424,19 +424,13 @@ Plantilla.plantillaTablaPersonas.cuerpo = `
     </tr>
     `;
 
-// Pie de la tabla
+//hecho el TDD
 Plantilla.plantillaTablaPersonas.pie = `        </tbody>
              </table>
              `;
 
 
-/**
- * Actualiza el cuerpo de la plantilla deseada con los datos de la persona que se le pasa
- * @param {String} Plantilla Cadena conteniendo HTML en la que se desea cambiar lso campos de la plantilla por datos
- * @param {Persona} Persona Objeto con los datos de la persona que queremos escribir en el TR
- * @returns La plantilla del cuerpo de la tabla con los datos actualizados
- */
-Plantilla.sustituyeTags = function (plantilla, persona) {
+Plantilla.sustituyeTags = function (plantilla, persona) {   //hecho el TDD
     return plantilla
     .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), persona.ref['@ref'].id)
     .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
@@ -448,7 +442,7 @@ Plantilla.sustituyeTags = function (plantilla, persona) {
 }
 
 
-Plantilla.plantillaTablaPersonas.actualiza = function (persona) {
+Plantilla.plantillaTablaPersonas.actualiza = function (persona) {  //hecho el TDD
     return Plantilla.sustituyeTags(this.cuerpo, persona)
 }
 
@@ -457,7 +451,7 @@ Plantilla.plantillaFormularioPersona.actualiza = function (persona) { //hecho el
     return Plantilla.sustituyeTags(this.formulario, persona)
 }
 
-Plantilla.plantillaFormularioPersona.actualiza12 = function (persona) {
+Plantilla.plantillaFormularioPersona.actualiza12 = function (persona) { //hecho el TDD
     return Plantilla.sustituyeTags(this.formulario1, persona)
 }
 
@@ -466,47 +460,34 @@ Plantilla.mostrarP = function (idPersona) { // hecho el TDD, pero no se deberia 
 }
 
 
-
-Plantilla.personaComoTabla = function (persona) {
+Plantilla.personaComoTabla = function (persona) { // SIN HACER EL TDD
     return Plantilla.plantillaTablaPersonas.cabecera
         + Plantilla.plantillaTablaPersonas.actualiza(persona)
         + Plantilla.plantillaTablaPersonas.pie;
 }
 
 
-
-Plantilla.personaComoFormulario = function (persona) {
+Plantilla.personaComoFormulario = function (persona) {          //hecho el TDD
     return Plantilla.plantillaFormularioPersona.actualiza( persona );
 }
 
-Plantilla.personaComoFormulario12 = function (persona) {
+Plantilla.personaComoFormulario12 = function (persona) {        //hecho el TDD
     return Plantilla.plantillaFormularioPersona.actualiza12( persona );
 }
 
 
-/**
- * Función para mostrar en pantalla todas las personas que se han recuperado de la BBDD.
- * @param {Vector_de_personas} vector Vector con los datos de las personas a mostrar
- */
 
-Plantilla.imprimeMuchasPersonas = function (vector) {
-    // console.log(vector) // Para comprobar lo que hay en vector
-
-    // Compongo el contenido que se va a mostrar dentro de la tabla
+Plantilla.imprimeMuchasPersonas = function (vector) { //sin hacer el TDD
     let msj = Plantilla.plantillaTablaPersonas.cabecera
     vector.forEach(e => msj += Plantilla.plantillaTablaPersonas.actualiza(e))
     msj += Plantilla.plantillaTablaPersonas.pie
 
-    // Borro toda la info de Article y la sustituyo por la que me interesa
+    
     Frontend.Article.actualizarBoton("Listado de proyectos", msj)
 }
 
-/**
- * Función para mostrar en pantalla los detalles de una persona que se ha recuperado de la BBDD por su id
- * @param {Persona} persona Datos de la persona a mostrar
- */
 
-Plantilla.imprimeUnaPersona = function (persona) { // hecho el TDD
+Plantilla.imprimeUnaPersona = function (persona) {          // hecho el TDD
     let msj = Plantilla.personaComoFormulario(persona);
 
     Frontend.Article.actualizar("Mostrar a Marta Ruiz", msj)
@@ -514,7 +495,7 @@ Plantilla.imprimeUnaPersona = function (persona) { // hecho el TDD
     Plantilla.almacenaDatos(persona)
 }
 
-Plantilla.imprimeUnaPersona12 = function (persona) { // hecho el TDD
+Plantilla.imprimeUnaPersona12 = function (persona) {        // hecho el TDD
     let msj = Plantilla.personaComoFormulario12(persona);
 
     Frontend.Article.actualizar("Mostrar participante", msj)
@@ -522,38 +503,25 @@ Plantilla.imprimeUnaPersona12 = function (persona) { // hecho el TDD
     Plantilla.almacenaDatos(persona)
 }
 
-/**
- * Almacena los datos de la persona que se está mostrando
- * @param {Persona} persona Datos de la persona a almacenar
- */
 
-Plantilla.almacenaDatos = function (persona) {
+Plantilla.almacenaDatos = function (persona) {              // hecho el TDD
     Plantilla.personaMostrada = persona;
 }
 
-/**
- * Recupera los valores almacenados de la persona que se estaba mostrando
- * @return Datos de la persona a almacenada
- */
 
-Plantilla.recuperaDatosAlmacenados = function () {
+
+Plantilla.recuperaDatosAlmacenados = function () {         // hecho el TDD 
     return this.personaMostrada;
 }
 
-/**
- * Función principal para recuperar las personas desde el MS y, posteriormente, imprimirlas.
- */
-Plantilla.listar2 = function () {
+
+Plantilla.listar2 = function () {     //no se hace TDD, es async                      
     Plantilla.recupera(Plantilla.imprimeMuchasPersonas);
 }
 
 
-/**
- * Establece disable = habilitando en los campos editables
- * @param {boolean} Deshabilitando Indica si queremos deshabilitar o habilitar los campos
- * @returns El propio objeto Personas, para concatenar llamadas
- */
-Plantilla.habilitarDeshabilitarCamposEditables = function (deshabilitando) {
+
+Plantilla.habilitarDeshabilitarCamposEditables = function (deshabilitando) {       //TDD hecho
     deshabilitando = (typeof deshabilitando === "undefined" || deshabilitando === null) ? true : deshabilitando
     for (let campo in Plantilla.form) {
         document.getElementById(Plantilla.form[campo]).disabled = deshabilitando
@@ -562,31 +530,22 @@ Plantilla.habilitarDeshabilitarCamposEditables = function (deshabilitando) {
 }
 
 
-/**
- * Establece disable = true en los campos editables
- * @returns El propio objeto Personas, para concatenar llamadas
- */
-Plantilla.deshabilitarCamposEditables = function () {
+
+Plantilla.deshabilitarCamposEditables = function () {    //TDD hecho
     Plantilla.habilitarDeshabilitarCamposEditables(true)
     return this
 }
 
 
-/**
- * Establece disable = false en los campos editables
- * @returns El propio objeto Personas, para concatenar llamadas
- */
-Plantilla.habilitarCamposEditables = function () {
+                                                                                        
+Plantilla.habilitarCamposEditables = function () {      //TDD hecho
     Plantilla.habilitarDeshabilitarCamposEditables(false)
     return this
 }
 
 
-/**
- * ????Muestra las opciones que tiene el usuario cuando selecciona Editar
- * @returns El propio objeto Personas, para concatenar llamadas
- */
-Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {
+
+Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {     //TDD hecho
     let opciones = document.getElementsByClassName(classname)
     let claseQuitar = mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
     let claseAniadir = !mostrando ? Frontend.CLASS_OCULTAR : Frontend.CLASS_MOSTRAR
@@ -598,75 +557,59 @@ Plantilla.opcionesMostrarOcultar = function (classname, mostrando) {
     return this
 }
 
-/**
- * Oculta todas las opciones secundarias
- * @returns El propio objeto para encadenar llamadas
- */
-Plantilla.ocultarOpcionesSecundarias = function () {
+
+Plantilla.ocultarOpcionesSecundarias = function () {    //TDD hecho
     this.opcionesMostrarOcultar("opcion-secundaria", false)
     return this
 }
 
 
-/**
- * Muestra todas las opciones secundarias
- * @returns El propio objeto para encadenar llamadas
- */
-Plantilla.mostrarOpcionesSecundarias = function () {
+
+Plantilla.mostrarOpcionesSecundarias = function () { //TDD hecho
     this.opcionesMostrarOcultar("opcion-secundaria", true)
     return this
 }
 
 
-/**
- * Muestra las opciones que tiene el usuario cuando selecciona Editar
- * @returns El propio objeto Personas, para concatenar llamadas
- */
-Plantilla.mostrarOcionesTerciariasEditar = function () {
+
+Plantilla.mostrarOcionesTerciariasEditar = function () {  //TDD hecho
     this.opcionesMostrarOcultar("opcion-terciaria editar", true)
     return this
 }
 
 
-/**
- * Oculta las opciones que tiene el usuario cuando selecciona Editar
- * @returns El propio objeto Personas, para concatenar llamadas
- */
-Plantilla.ocultarOcionesTerciariasEditar = function () {
+
+Plantilla.ocultarOcionesTerciariasEditar = function () {  //TDD hecho
     this.opcionesMostrarOcultar("opcion-terciaria editar", false)
     return this
 }
 
 
-/**
- * Función que permite modificar los datos de una persona
- */
-Plantilla.editar = function () {
+
+Plantilla.editar = function () {    //TDD hecho
     this.ocultarOpcionesSecundarias()
     this.mostrarOcionesTerciariasEditar()
     this.habilitarCamposEditables()
 }
 
-/**
- * Función que permite cancelar la acción sobre los datos de una persona
- */
-Plantilla.cancelar = function () {
+
+Plantilla.cancelar = function () {    //TDD hecho
     this.imprimeUnaPersona12(this.recuperaDatosAlmacenados())
     this.deshabilitarCamposEditables()
     this.ocultarOcionesTerciariasEditar()
     this.mostrarOpcionesSecundarias()
 }
 
-Plantilla.listarBuscar= function (search){
+Plantilla.listarBuscar= function (search){      //no se hace TDD, es async
     this.recuperaBuscar(this.imprime,search);
     
 }
 
-Plantilla.listarBuscar2= function (search){
+Plantilla.listarBuscar2= function (search){     //no se hace TDD, es async
     this.recuperaBuscar2(this.imprime,search);
 }
 
-Plantilla.recuperaBuscar = async function (callBackFn,nombre) {
+Plantilla.recuperaBuscar = async function (callBackFn,nombre) {     //no se hace TDD, es async
     let response = null
 
     // Intento conectar con el microservicio personas
@@ -689,7 +632,7 @@ Plantilla.recuperaBuscar = async function (callBackFn,nombre) {
     }
 }
 
-Plantilla.recuperaBuscar2 = async function (callBackFn,nombre) {
+Plantilla.recuperaBuscar2 = async function (callBackFn,nombre) {    //no se hace TDD, es async
     let response = null
 
     // Intento conectar con el microservicio personas
@@ -713,10 +656,7 @@ Plantilla.recuperaBuscar2 = async function (callBackFn,nombre) {
 }
 
 
-/**
- * Función para guardar los nuevos datos de una persona
- */
-Plantilla.guardar = async function () {
+Plantilla.guardar = async function () {     //no se hace TDD, es async
     try {
         let url = Frontend.API_GATEWAY + "/plantilla/setTodo/"
         let id_persona = document.getElementById("form-persona-id").value
@@ -751,6 +691,8 @@ Plantilla.guardar = async function () {
         //console.error(error)
     }
 }
+
+
 
 
 

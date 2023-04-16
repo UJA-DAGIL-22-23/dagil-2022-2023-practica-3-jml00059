@@ -123,7 +123,7 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
         })
 })
 
-                                                                              /*    TDD     HU      8*/
+                                                                              /*    TDD     HU      2*/
 
 
 describe("Plantilla.imprime", function () {
@@ -239,7 +239,7 @@ describe("Plantilla.imprime", function () {
 
 
 
-  describe("Plantilla.cabeceraTablee", function() {
+  describe("Plantilla.cabeceraTable", function() {
     it('existe la función cabeceraTable', () => {
       expect(Plantilla.cabeceraTable).toBeDefined();
     });
@@ -301,7 +301,7 @@ describe("Plantilla.imprime", function () {
 
                                                                         /*    TDD     HU      6*/
 
-    describe('Plantilla.almacenaDatos', () => {
+describe('Plantilla.almacenaDatos', () => {
       it('debe almacenar correctamente la persona mostrada', () => {
         const persona = {
           ref: { '@ref': { id: '359558425872433356' } },
@@ -320,7 +320,6 @@ describe("Plantilla.imprime", function () {
     expect(Plantilla.personaMostrada).toEqual(persona);
   });
 });
-
 
 
 describe("Plantilla.imprimeUnaPersona", function () {
@@ -459,6 +458,26 @@ describe('Plantilla.plantillaTags', () => {
     expect(typeof plantillaTags.AniosJJOO).toBe('string');
   });
 });
+
+
+
+describe('Plantilla.plantillaTablaPersonas.cabecera', () => {
+  it('Debería estar definida correctamente', () => {
+    const expected = `<table width="100%" class="listado-proyectos">
+                    <thead>
+                        <th width="20%">Id</th>
+                        <th width="20%">Nombre</th>
+                        <th width="20%">Pais</th>
+                        <th width="20%">Edad</th>
+                        <th width="20%">Grupo</th>
+                        <th width="10%">Acciones</th>
+                    </thead>
+                    <tbody>
+    `;
+    expect(Plantilla.plantillaTablaPersonas.cabecera).toEqual(expected);
+  });
+});
+
 
 
 describe('Plantilla.form', () => {
@@ -633,7 +652,398 @@ describe('Plantilla.plantillaFormularioPersona.actualiza', () => {
 })
 
 
-                                                                              /*    TDD     HU      8*/
+                                                                              /*    TDD     HU12      &&        HU13*/
+  
+  describe('Plantilla.plantillaTablaPersonas.pie', () => {
+  it('should be a string', () => {
+    expect(typeof Plantilla.plantillaTablaPersonas.pie).toBe('string');
+  });
+
+  it('should contain </tbody> tag', () => {
+    expect(Plantilla.plantillaTablaPersonas.pie).toContain('</tbody>');
+  });
+
+  it('should contain </table> tag', () => {
+    expect(Plantilla.plantillaTablaPersonas.pie).toContain('</table>');
+  });
+});
+
+
+
+describe('Plantilla.plantillaTablaPersonas.actualiza', () => {
+  const mockPersona = {
+    ref: { '@ref': { id: '1234' } },
+    data: {
+      nombre: 'Juan',
+      pais: 'España',
+      edad: 30,
+      grupo: 1,
+    }
+  }
+
+  it('should replace the ID tag with the persona id', () => {
+    const result = Plantilla.plantillaTablaPersonas.actualiza(mockPersona)
+    expect(result.includes(mockPersona.ref['@ref'].id)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag NOMBRE por nombre', () => {
+    const result = Plantilla.plantillaTablaPersonas.actualiza(mockPersona)
+    expect(result.includes(mockPersona.data.nombre)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag PAIS por pais', () => {
+    const result = Plantilla.plantillaTablaPersonas.actualiza(mockPersona)
+    expect(result.includes(mockPersona.data.pais)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag EDAD por edad', () => {
+    const result = Plantilla.plantillaTablaPersonas.actualiza(mockPersona)
+    expect(result.includes(mockPersona.data.edad)).toBe(true)
+  })
+
+
+  it('deberia reemplazar el tag GRUPO por grupo', () => {
+    const result = Plantilla.plantillaTablaPersonas.actualiza(mockPersona)
+    expect(result.includes(mockPersona.data.grupo)).toBe(true)
+  })
+})
+
+
+describe('Plantilla.plantillaFormularioPersona.actualiza12', () => {
+  const mockPersona = {
+    ref: { '@ref': { id: '1234' } },
+    data: {
+      nombre: 'Juan',
+      pais: 'España',
+      edad: 30,
+      grupo: 1,
+    }
+  }
+
+  it('should replace the ID tag with the persona id', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza12(mockPersona)
+    expect(result.includes(mockPersona.ref['@ref'].id)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag NOMBRE por nombre', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza12(mockPersona)
+    expect(result.includes(mockPersona.data.nombre)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag PAIS por pais', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza12(mockPersona)
+    expect(result.includes(mockPersona.data.pais)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag EDAD por edad', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza12(mockPersona)
+    expect(result.includes(mockPersona.data.edad)).toBe(true)
+  })
+
+  it('deberia reemplazar el tag GRUPO por grupo', () => {
+    const result = Plantilla.plantillaFormularioPersona.actualiza12(mockPersona)
+    expect(result.includes(mockPersona.data.grupo)).toBe(true)
+  })
+})
+
+
+describe("Plantilla", function() {
+  describe("personaComoFormulario12", function() {
+    it("debe comprobar que la función devuelve el formulario de persona bien actualizado", function() {
+      const persona = {
+        ref: {
+          '@ref': {
+            id: '222222'
+          }
+        },
+        data: {
+          nombre: 'Marta Ruiz',
+          pais: 'Brasil',
+          edad: 25,
+          modalidad: 'pareja_mixta',
+          grupo: 3,
+          aniosJJOO: [2005]
+        }
+      };
+
+      const formulario = '<form><input type="text" name="nombre" value="' + persona.data.nombre + '">' +
+                          '<input type="text" name="pais" value="' + persona.data.pais + '">' +
+                          '<input type="number" name="edad" value="' + persona.data.edad + '">' +
+                          '<input type="text" name="modalidad" value="' + persona.data.modalidad + '">' +
+                          '<input type="number" name="grupo" value="' + persona.data.grupo + '">' +
+                          '<input type="number" name="aniosJJOO" value="' + persona.data.aniosJJOO + '">' +
+                          '<input type="hidden" name="id" value="' + persona.ref['@ref'].id + '">' +
+                          '<input type="submit" value="Enviar"></form>';
+
+      spyOn(Plantilla, 'sustituyeTags').and.returnValue(formulario);
+
+      const resultado = Plantilla.personaComoFormulario12(persona);
+
+      expect(Plantilla.sustituyeTags).toHaveBeenCalledWith(Plantilla.plantillaFormularioPersona.formulario1, persona);
+      expect(resultado).toBe(formulario);
+    });
+  });
+});
+
+
+describe("Plantilla.recuperaDatosAlmacenados", () => {
+  it("devuelve la persona mostrada almacenada en la variable 'personaMostrada'", () => {
+    const personaMostrada = { 
+      ID: 1, 
+      NOMBRE: "Juan", 
+      PAIS: "Argentina", 
+      EDAD: 30, 
+      GRUPO: "A" 
+    };
+    Plantilla.personaMostrada = personaMostrada;
+    const result = Plantilla.recuperaDatosAlmacenados();
+    expect(result).toEqual(personaMostrada);
+  });
+});
+
+
+describe("Plantilla.editar", function() {
+  it("La funcion habilitar los campos editables", function() {
+      spyOn(Plantilla, "habilitarDeshabilitarCamposEditables");
+
+      Plantilla.editar();
+
+      expect(Plantilla.habilitarDeshabilitarCamposEditables).toHaveBeenCalledWith(false);
+  });
+});
+
+
+
+describe('Plantilla.plantillaFormularioPersona.formulario1', () => {
+  it('debería ser una cadena de texto', () => {
+    expect(typeof Plantilla.plantillaFormularioPersona.formulario1).toBe('string');
+  });
+
+  it('debería contener la etiqueta form', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('<form');
+  });
+
+  it('debería contener la etiqueta table', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('<table');
+  });
+
+  it('debería contener la etiqueta thead', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('<thead');
+  });
+
+  it('debería contener la etiqueta tbody', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('<tbody');
+  });
+
+  it('debería contener la etiqueta tr', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('<tr');
+  });
+
+  it('debería contener la etiqueta td', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('<td');
+  });
+
+  it('debería contener la etiqueta input', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('<input');
+  });
+
+  it('debería contener la etiqueta name="id_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('name="id_persona"');
+  });
+
+  it('debería contener la etiqueta name="nombre_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('name="nombre_persona"');
+  });
+
+  it('debería contener la etiqueta name="pais_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('name="pais_persona"');
+  });
+
+  it('debería contener la etiqueta name="edad_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('name="edad_persona"');
+  });
+
+  it('debería contener la etiqueta name="grupo_persona"', () => {
+    expect(Plantilla.plantillaFormularioPersona.formulario1).toContain('name="grupo_persona"');
+  });
+
+});
+
+
+describe("Plantilla.cancelar", function() {
+  it("debe cancelar todos los campos editables", function() {
+      spyOn(Plantilla, "habilitarDeshabilitarCamposEditables");
+
+      Plantilla.editar();
+
+      expect(Plantilla.habilitarDeshabilitarCamposEditables).toHaveBeenCalledWith(false);
+  });
+});
+
+
+describe("Plantilla.deshabilitarCamposEditables", function() {
+  it("desabilita el campo editable", function() {
+    spyOn(Plantilla, "habilitarDeshabilitarCamposEditables");
+
+    Plantilla.deshabilitarCamposEditables();
+
+    expect(Plantilla.habilitarDeshabilitarCamposEditables).toHaveBeenCalledWith(true);
+  });
+});
+
+
+describe("Plantilla.mostrarOcionesTerciariasEditar", () => {
+  it("Debería mostrar las opciones terciarias para editar", () => {
+    let plantilla;
+    const opcionesTerciarias = document.querySelectorAll(".opcion-terciaria.editar");
+    opcionesTerciarias.forEach((opcion) => {
+      opcion.classList.add("hidden");
+    });
+    
+    spyOn(Plantilla, "mostrarOcionesTerciariasEditar");
+
+    opcionesTerciarias.forEach((opcion) => {
+      expect(opcion.classList.contains("hidden")).toBe(false);
+    });
+  });
+});
+
+
+describe("Plantilla.mostrarOpcionesSecundarias", () => {
+  it("muestra todas las opciones secundarias", () => {
+    let plantilla;
+    const opciones = document.querySelectorAll(".opcion-secundaria");
+    opciones.forEach((opcion) => {
+      expect(opcion.style.display).toBe("");
+    });
+  });
+});
+
+
+
+describe('Plantilla.ocultarOcionesTerciariasEditar', function () {
+  it('debe ocultar las opciones terciarias de editar', function () {
+    let plantilla;
+    
+    // Simulamos que se han mostrado las opciones terciarias de editar
+    const opcionesTerciarias = document.querySelectorAll('.opcion-terciaria.editar');
+    opcionesTerciarias.forEach(opcion => opcion.style.display = 'block');
+    
+    
+    // Verificamos que se hayan ocultado las opciones terciarias de editar
+    const opcionesTerciariasOcultas = document.querySelectorAll('.opcion-terciaria.editar[style="display: none;"]');
+    expect(opcionesTerciariasOcultas.length).toEqual(opcionesTerciarias.length);
+  });
+});
+
+
+describe("Plantilla.ocultarOpcionesSecundarias", () => {
+  it("debería ocultar todas las opciones secundarias", () => {
+    // Arrange
+    let plantilla;
+    spyOn(Plantilla, "ocultarOpcionesSecundarias");
+    // Assert
+    const opcionesSecundarias = document.querySelectorAll(".opcion-secundaria");
+    expect(opcionesSecundarias.length).toBe(0);
+  });
+});
+
+
+describe("Plantilla.habilitarCamposEditables", function() {
+  it("debe habilttrtr el campo editable", function() {
+    spyOn(Plantilla, "habilitarDeshabilitarCamposEditables");
+
+    Plantilla.habilitarCamposEditables();
+
+    expect(Plantilla.habilitarDeshabilitarCamposEditables).toHaveBeenCalledWith(false);
+  });
+});
+
+
+describe("Plantilla.habilitarDeshabilitarCamposEditables", () => {
+  it("should disable all editable fields when given 'true'", () => {
+    // Arrange
+    const input1 = document.createElement("input");
+    const input2 = document.createElement("input");
+    input1.id = "field1";
+    input2.id = "field2";
+    document.body.appendChild(input1);
+    document.body.appendChild(input2);
+
+    Plantilla.form = {
+      field1: "field1",
+      field2: "field2",
+    };
+
+    // Act
+    Plantilla.habilitarDeshabilitarCamposEditables(true);
+
+    // Assert
+    expect(document.getElementById("field1").disabled).toBe(true);
+    expect(document.getElementById("field2").disabled).toBe(true);
+
+    // Clean up
+    document.body.removeChild(input1);
+    document.body.removeChild(input2);
+  });
+
+  it("should enable all editable fields when given 'false'", () => {
+    // Arrange
+    const input1 = document.createElement("input");
+    const input2 = document.createElement("input");
+    input1.id = "field1";
+    input2.id = "field2";
+    input1.disabled = true;
+    input2.disabled = true;
+    document.body.appendChild(input1);
+    document.body.appendChild(input2);
+
+    Plantilla.form = {
+      field1: "field1",
+      field2: "field2",
+    };
+
+    // Act
+    Plantilla.habilitarDeshabilitarCamposEditables(false);
+
+    // Assert
+    expect(document.getElementById("field1").disabled).toBe(false);
+    expect(document.getElementById("field2").disabled).toBe(false);
+
+    // Clean up
+    document.body.removeChild(input1);
+    document.body.removeChild(input2);
+  });
+});
+
+
+console.assert(
+  Plantilla.opcionesMostrarOcultar("opcion-secundaria", false) === Plantilla,
+  "Error: No se ha devuelto la instancia de Plantilla"
+);
+console.assert(
+  Plantilla.opcionesMostrarOcultar("opcion-terciaria editar", true) === Plantilla,
+  "Error: No se ha devuelto la instancia de Plantilla"
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -673,3 +1083,4 @@ Esto afecta a los métodos:
  por tanto: para esta práctica, se pueden dejar SIN HACER.
 
  */
+ 
