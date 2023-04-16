@@ -207,7 +207,7 @@ describe("Plantilla.imprime", function () {
     });
   });*/ 
 
-  /*    TDD     HU      4*/
+                                                                    /*    TDD     HU      4*/
 
   describe("Plantilla.imprime todos los participantes", function(){
     it("debe mostrar una tabla con todos los datos de los participantes",
@@ -323,33 +323,7 @@ describe("Plantilla.imprime", function () {
   });
   
 
-  /*describe("Plantilla.cuerpoTr", function () {
-    const p = {
-        ref: { "@ref": { id: "359558425872433356" } },
-        data: {
-            nombre: "Marta Ruiz",
-            fechaNacimiento: { dia: 6, mes: 6, año: 1995 },
-            pais: "Brasil",
-            edad: 28,
-            modalidad: "pareja_mixta",
-            grupo: 1,
-            aniosJJOO: [2005,2009,2013]
-        }
-    }
-    it("debe devolver una cadena que contenga todos los datos de la plantilla",
-        function () {
-            expect(Plantilla.cuerpoTr(p)).toBe(`<tr title="${p.ref['@ref'].id}">
-            <td>${p.data.nombre}</td>
-            <td>${p.data.fechaNacimiento.dia}/${p.data.fechaNacimiento.mes}/${p.data.fechaNacimiento.año}</td>
-            <td>${p.data.pais}</td>
-            <td>${p.data.edad}</td>
-            <td>${p.data.modalidad}</td>
-            <td>${p.data.grupo}</td>
-            <td>${p.data.aniosJJOO}</td></tr>`);
-        });
-});*/
-
-/*describe("Plantilla.cuerpoTr", function() { // EN ESTA FUNCION ES DONDE ME DA ERROR
+describe("Plantilla.cuerpoTr", function() {                                           // EN ESTA FUNCION ES DONDE ME DA ERROR
     it("debe devolver un string con los datos de un jugador", () => { 
       const proyecto = {
         data: {
@@ -378,7 +352,58 @@ describe("Plantilla.imprime", function () {
       
       expect(result).toBe(expectedOutput);
     });
-  });*/
+  });
+
+                                                                        /*    TDD     HU      6*/
+    /*describe('Plantilla.sustituyeTags', () => {
+        it('debe sustituir correctamente las etiquetas de la plantilla', () => {
+          const plantilla = `
+            <tr title="{ID}">
+              <td>{NOMBRE}</td>
+              <td>{FECHA}</td>
+              <td>{EDAD}</td>
+              <td>{MODALIDAD}</td>
+              <td>{GRUPO}</td>
+              <td>{AniosJJOO}</td>
+            </tr>
+          `;
+
+          const persona = {
+            ref: { '@ref': { id: '359558425872433356' } },
+            data: {
+              nombre: "Marta Ruiz",
+              pais: "Brasil",
+              edad: 28,
+              modalidad: "pareja_mixta",
+              grupo: 1,
+              aniosJJOO: [2005,2009,2013]
+            }
+          };
+
+          const resultado = Plantilla.sustituyeTags(plantilla, persona);
+          const esperado = `
+            <tr title="359558425872433356">
+              <td>Marta Ruiz</td>
+              <td>Brasil</td>
+              <td>28</td>
+              <td>pareja_mixta</td>
+              <td>1</td>
+              <td>2005,2009,2013</td>
+            </tr>
+          `;
+          expect(resultado).toBe(esperado);
+        });
+      });*/
+
+      
+      
+      
+
+      
+      
+      
+      
+  
   
   
   

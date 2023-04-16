@@ -266,7 +266,7 @@ Plantilla.imprimeUnaPersona = function (persona) {
 }
 
 
-Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) {
+Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) { //No se hace TDD -> es async
     try {
         const url = Frontend.API_GATEWAY + "/plantilla/getPorId/" + idPersona
         const response = await fetch(url);
@@ -280,14 +280,13 @@ Plantilla.recuperaUnaPersona = async function (idPersona, callBackFn) {
         }
 }
 
-Plantilla.mostrarP = function (idPersona) {
+Plantilla.mostrarP = function (idPersona) { //No se hace TDD -> es async
     this.recuperaUnaPersona(idPersona, this.imprimeUnaPersona);
 }
 
 Plantilla.form = {
     ID: "form-persona-id",
     NOMBRE: "form-persona-nombre",
-    FECHA: "form-persona-fecha",
     PAIS: "form-persona-pais",
     EDAD: "form-persona-edad",
     MODALIDAD: "form-persona-modalidad",
@@ -298,7 +297,6 @@ Plantilla.form = {
 Plantilla.plantillaTags = {
     "ID": "### ID ###",
     "NOMBRE": "### NOMBRE ###",
-    "FECHA": "### FECHA ###",
     "PAIS": "### PAIS ###",
     "EDAD": "### EDAD ###",
     "MODALIDAD": "### MODALIDAD ###",
@@ -306,11 +304,10 @@ Plantilla.plantillaTags = {
     "AniosJJOO": "### AniosJJOO ###",
 }
 
-Plantilla.sustituyeTags = function (plantilla, persona) {
+Plantilla.sustituyeTags = function (plantilla, persona) { //sin hacer
     return plantilla
         .replace(new RegExp(Plantilla.plantillaTags.ID, 'g'), persona.ref['@ref'].id)
         .replace(new RegExp(Plantilla.plantillaTags.NOMBRE, 'g'), persona.data.nombre)
-        .replace(new RegExp(Plantilla.plantillaTags.FECHA, 'g'), persona.data.fecha)
         .replace(new RegExp(Plantilla.plantillaTags.PAIS, 'g'), persona.data.pais)
         .replace(new RegExp(Plantilla.plantillaTags.EDAD, 'g'), persona.data.edad)
         .replace(new RegExp(Plantilla.plantillaTags.MODALIDAD, 'g'), persona.data.modalidad)
@@ -320,12 +317,12 @@ Plantilla.sustituyeTags = function (plantilla, persona) {
 
 Plantilla.plantillaFormularioPersona = {}
 
-Plantilla.plantillaFormularioPersona.actualiza = function (persona) {
+Plantilla.plantillaFormularioPersona.actualiza = function (persona) { //sin hacer
     return Plantilla.sustituyeTags(this.formulario, persona)
 }
 
 
-Plantilla.plantillaFormularioPersona.formulario = `
+Plantilla.plantillaFormularioPersona.formulario = ` 
 <form method='post' action=''>
     <table class="listado-proyectos">
         <thead>
@@ -357,7 +354,7 @@ Plantilla.plantillaFormularioPersona.formulario = `
                         name="edad_persona"/></td>
                 <td>
                 <td><input type="text" class="form-persona-elemento editable" disabled
-                        id="form-persona-modalidad" required value="${Plantilla.plantillaTags.MODALIDAD}" 
+                        id="form-persona-modalidad" required value="${Plantilla.plantillaTags.MODALIDAD}"
                         name="modalidad_persona"/></td>
                 <td>
                 <td><input type="text" class="form-persona-elemento editable" disabled
@@ -370,12 +367,12 @@ Plantilla.plantillaFormularioPersona.formulario = `
         </tbody>
     </table>
 </form>
-`;
+`; //sin hacer
 
 
 Plantilla.personaMostrada = null
 
-Plantilla.almacenaDatos = function (persona) {
+Plantilla.almacenaDatos = function (persona) { //hecho el TDD
     Plantilla.personaMostrada = persona;
 }
 
