@@ -374,7 +374,7 @@ Plantilla.almacenaDatos = function (persona) { //hecho el TDD
 }
 
 
-Plantilla.listarParaForm= function (search){
+Plantilla.listarParaForm= function (search){ //no se hace TDD porque es asyncPo
     this.recuperaBuscar(this.imprime,search);
 }
 

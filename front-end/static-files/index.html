@@ -34,10 +34,23 @@
             title="Realiza un listado de todas las personas que hay en la BBDD">Participantes</a>
         <a href="javascript:Plantilla.mostrarP('359558425872433356')" class="opcion-principal"
             title="Realiza un listado de todas las personas que hay en la BBDD">Mostrar un participante por id</a>
-            
+            <br/>
+            <br/>
+            <h1>Formulario para obtener un jugador introduciendo su nombre y apellidos</h1>
+         <form>
+            <label>Buscar por nombre:</label>
+            <br/>
+            <input type="text" id="search" name="search">
+            <button type="button" onclick="buscar()">Buscar</button>
+        </form>
+        <script>
+            function buscar(){
+                var searchTerm=document.getElementById("search").value;
+                Plantilla.listarParaForm(searchTerm);
+            }
+        </script>    
     </nav>
 
-    
 
     <!-- 
         Article en el que se va a mostrar la info cuando se pinche una opción del menú 
