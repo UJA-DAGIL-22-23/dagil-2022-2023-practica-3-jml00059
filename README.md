@@ -41,39 +41,74 @@
 
 * **Tablero de Trello antes:**
 
-    <img src='./Inicio_Trello.jpg'>  
+    <img src='./img/Inicio_Trello.jpg'>  
 
 * **Tablero de Trello después:**
 
-    <img src='./final_trello.jpg'>  
+    <img src='./img/final_trello.jpg'>  
     
 * **Home de Fauna:**
 
-    <img src='./home_fauna.jpg'>  
+    <img src='./img/home_fauna.jpg'>  
 
 * **Pagina colección de Fauna:**
 
-    <img src='./pagina_fauna.jpg'>  
+    <img src='./img/pagina_fauna.jpg'>  
 
 * **Base de datos de Fauna:**
 
-    <img src='./basedatos.jpg'>  
+    <img src='./img/basedatos.jpg'>  
 
 * **Datos de la base de datos de Fauna:**
 
-    <img src='./datosb.jpg'>  
+    <img src='./img/datosb.jpg'>  
 
 * **Documentos creados en la colección:**
 
     [Documentos creados en la coleccion](coleccion.json)
 
+## Incremento 1
+Como he mencionado anteriormente,el incremento 1 constará de:
+* **HU1**
+    <img src='./img/HU1.jpg'> 
+
+    <img src='./img/HU1 Trello.jpg'> 
+
+    En ms-plantilla -> callbacks.js he modificado:
+
+    <img src='./img/HU1 codigo.jpg'> 
+
+* **HU2**
+    <img src='./img/HU2.jpg'> 
+
+    <img src='./img/HU2 Trello.jpg'> 
+
+    Primero,en el ms-plantilla.js implemento:
+    <img src='./img/HU2 1.jpg'> 
+
+    <img src='./img/HU2 11.jpg'> 
+    
+    Y en ms-plantilla -> callbacks.js
+    <img src='./img/HU2 111.jpg'> 
+
+    Por último, en el index.html, declaro la etiqueta para llamar a la función:
+    <img src='./img/HU2 2.jpg'> 
+
+* **HU4**
+    <img src='./img/HU4.jpg'>
+
+    <img src='./img/HU4 Trello.jpg'>
+
+    Como antes, en el ms-plantilla implemento:
+    <img src='./img/HU4 1.jpg'>
+
+    <img src='./img/HU4 11.jpg'>
+
+    Por último, en el index.html, declaro la etiqueta para llamar a la función:
+    <img src='./img/HU4 2.jpg'> 
 
 
-
-
-
-
-
+## Incremento 2
 
 
 
