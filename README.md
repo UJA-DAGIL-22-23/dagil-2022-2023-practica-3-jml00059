@@ -1,32 +1,83 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/hneiFYl3)
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-8d59dc4de5201274e310e4c54b9627a8934c3b88527886e3b421487c677d23eb.svg)](https://classroom.github.com/a/hneiFYl3)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10657241&assignment_repo_type=AssignmentRepo)
-# *Plantilla Práctica Microservicios*: descripción de la aplicación
+## Práctica 3 Javier Martínez López
+* **Nombre:**
 
-Este código que se presenta aquí corresponde a la plantilla para realizar un desarrollo basado en microservicios para las prácticas de Desarrollo Ágil, para el curso 2022-2023.
+  Javier Martínez López
+
+* **Dirección de correo electrónico:**
+
+  jml00059@red.ujaen.es
+
+* **Tablero de Trello:**
+
+    https://trello.com/b/YjYro0ci/pr%C3%A1ctica-3
+    
+* **HU realizadas:**
+
+    He realizado 3 incrementos distribuidos de manera:
+    
+    *Incremento 1*
+    
+        HU1 -> Ver la información del autor/autora de la aplicación al pulsar en el botón “Acerca de”
+
+        HU2 -> Ver un listado solo con los nombres de todos los jugadores/equipos
+
+        HU4 -> Ver un listado con todos los datos de todos los jugadores/equipos
+
+    *Incremento 2*
+
+        HU3 -> Ver un listado solo con los nombres de todos los jugadores/equipos ordenados alfabéticamente
+
+        HU6 -> Ver todos los datos de un determinado jugador/equipo
+
+        HU12 -> Modificar el nombre de un jugador/equipo
+
+    *Incremento 3*
+    
+        HU8 -> Ver un listado de todos los datos de jugadores/equipos cuyo nombre cumple con un criterio de búsqueda indicado por el usuario
+
+        HU10 -> Ver un listado de todos los datos de jugadores/equipos que cumplen simultáneamente con varios criterios de búsqueda indicados por el usuario para algunos de sus campos. Se deberá poder buscar al menos por 3 campos distintos (además del nombre)
+
+        HU13 -> Modificar varios de los datos a la vez de un jugador/equipo.   Se deberán poder modificar al menos 3 campos además del nombre
+
+* **Tablero de Trello antes:**
+
+    <img src='./Inicio_Trello.jpg'>  
+
+* **Tablero de Trello después:**
+
+    <img src='./final_trello.jpg'>  
+    
+* **Home de Fauna:**
+
+    <img src='./home_fauna.jpg'>  
+
+* **Pagina colección de Fauna:**
+
+    <img src='./pagina_fauna.jpg'>  
+
+* **Base de datos de Fauna:**
+
+    <img src='./basedatos.jpg'>  
+
+* **Datos de la base de datos de Fauna:**
+
+    <img src='./datosb.jpg'>  
+
+* **Documentos creados en la colección:**
+
+    [Documentos creados en la coleccion](coleccion.json)
 
 
-## Arquitectura de la aplicación
 
-La aplicación funciona gracias a la colaboración de **tres aplicaciones distintas** (en realidad, tres servidores web implementados con [Express ↗️](https://expressjs.com/) para [Node.js ↗️](https://nodejs.org/en/)).
 
-![Esquema de comunicación entre las distintas aplicaciones ](./assets/img/esquema-comunicacion-apps.png) 
 
-*Esquema de comunicación entre las distintas aplicaciones.* &#8593;
 
-Como se puede observar, esta aplicación plantilla está formada por las siguientes aplicaciones web:
-* Aplicación *front-end*: servidor para la página web
-* Aplicación *api-gateway*: enrutador de peticiones a microservicios
-* Aplicación *ms-plantilla*: microservicio
 
-Se respetan siempre las siguientes reglas básicas:
-1. El usuario solo interactúa con la aplicación *front-end*
-2. La aplicación *front-end* solo interactúa con la aplicación *api-gateway*
-3. La aplicación *api-gateway* recibe peticiones de *front-end* y las deriva al microservicio correspondiente. Dicho microservicio resuelve la petición y envía el resultado a la aplicación *front-end* a través de *api-gateway*
-4. Los microservicios interactúan con una BBDD y con *api-gateway* y también entre ellos. 
-5. En el caso de haber varios microservicios, cada uno de ellos puede interactuar con una BBDD distinta. Además, los microservicios pueden interactuar directamente entre ellos.
-   
-## Funcionamiento de la aplicación
+
+
+
+
+
 La funcionalidad implementada en la plantilla es muy simple: hay dos botones que llaman, respectivamente, a la ruta raíz del microservicio (es decir, ```/plantilla/```) y a la ruta "Acerca de" (```/plantilla/acercade```) siempre usando como intermediario a la aplicación *api-gateway*.
 
 Las siguientes imágenes muestran la interfaz de la aplicación una vez puesta en marcha:

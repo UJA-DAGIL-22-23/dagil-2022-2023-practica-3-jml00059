@@ -1,0 +1,218 @@
+{
+  "ref": Ref(Collection("Gimnasia"), "359558425872433356"),
+  "ts": 1679160781450000,
+  "data": {
+    "nombre": "Marta Ruiz",
+    "fechaNacimiento": {
+      "dia": 6,
+      "mes": 6,
+      "año": 1995
+    },
+    "pais": "España",
+    "edad": 28,
+    "modalidad": "pareja_mixta",
+    "grupo": 1,
+    "aniosJJOO": [
+      2005,
+      2009,
+      2013
+    ]
+  }
+}
+
+{
+  "ref": Ref(Collection("Gimnasia"), "359558896576102605"),
+  "ts": 1679160966960000,
+  "data": {
+    "nombre": "Manuel Jose Duran",
+    "fechaNacimiento": {
+      "dia": 5,
+      "mes": 6,
+      "año": 1999
+    },
+    "pais": "Portugal",
+    "edad": 24,
+    "modalidad": "pareja_masculina",
+    "grupo": 1,
+    "aniosJJOO": [
+      2013,
+      2017
+    ]
+  }
+}
+
+{
+  "ref": Ref(Collection("Gimnasia"), "359559109271355597"),
+  "ts": 1679161151020000,
+  "data": {
+    "nombre": "Sabina Guisado",
+    "fechaNacimiento": {
+      "dia": 14,
+      "mes": 1,
+      "año": 2000
+    },
+    "pais": "Italia",
+    "edad": 23,
+    "modalidad": "trio_femenino",
+    "grupo": 1,
+    "aniosJJOO": [
+      2017,
+      2021
+    ]
+  }
+}
+
+{
+  "ref": Ref(Collection("Gimnasia"), "359559274335043789"),
+  "ts": 1679161295160000,
+  "data": {
+    "nombre": "Bonifacio Cardona",
+    "fechaNacimiento": {
+      "dia": 1,
+      "mes": 1,
+      "año": 1987
+    },
+    "pais": "España",
+    "edad": 36,
+    "modalidad": "cuarteto_masculino",
+    "grupo": 1,
+    "aniosJJOO": [
+      2017,
+      2021,
+      2025
+    ]
+  }
+}
+
+{
+  "ref": Ref(Collection("Gimnasia"), "359559362701689037"),
+  "ts": 1679161379430000,
+  "data": {
+    "nombre": "Lionel Andres Messi",
+    "fechaNacimiento": {
+      "dia": 24,
+      "mes": 6,
+      "año": 1987
+    },
+    "pais": "Argentina",
+    "edad": 35,
+    "modalidad": "cuarteto_masculino",
+    "grupo": 1,
+    "aniosJJOO": [
+      2013,
+      2017,
+      2021,
+      2025
+    ]
+  }
+}
+
+{
+  "ref": Ref(Collection("Gimnasia"), "359559501229064396"),
+  "ts": 1679161511600000,
+  "data": {
+    "nombre": "Andres Iniesta",
+    "fechaNacimiento": {
+      "dia": 25,
+      "mes": 10,
+      "año": 1980
+    },
+    "pais": "España",
+    "edad": 43,
+    "modalidad": "pareja_masculina",
+    "grupo": 1,
+    "aniosJJOO": [
+      2013,
+      2017,
+      2021
+    ]
+  }
+}
+
+{
+  "ref": Ref(Collection("Gimnasia"), "359559564333416652"),
+  "ts": 1679161571730000,
+  "data": {
+    "nombre": "Gerard Pique",
+    "fechaNacimiento": {
+      "dia": 14,
+      "mes": 8,
+      "año": 1989
+    },
+    "pais": "España",
+    "edad": 34,
+    "modalidad": "pareja_masculina",
+    "grupo": 1,
+    "aniosJJOO": [
+      2013,
+      2017,
+      2021
+    ]
+  }
+}
+
+{
+  "ref": Ref(Collection("Gimnasia"), "359559630105346252"),
+  "ts": 1679161634450000,
+  "data": {
+    "nombre": "Sergio Busquets",
+    "fechaNacimiento": {
+      "dia": 9,
+      "mes": 4,
+      "año": 1989
+    },
+    "pais": "España",
+    "edad": 34,
+    "modalidad": "cuarteto_masculino",
+    "grupo": 4,
+    "aniosJJOO": [
+      2009,
+      2013,
+      2017,
+      2021
+    ]
+  }
+}
+
+{
+  "ref": Ref(Collection("Gimnasia"), "359559710700994765"),
+  "ts": 1679161711310000,
+  "data": {
+    "nombre": "Carolina Gomez",
+    "fechaNacimiento": {
+      "dia": 5,
+      "mes": 12,
+      "año": 1998
+    },
+    "pais": "España",
+    "edad": 24,
+    "modalidad": "pareja_mixta",
+    "grupo": 3,
+    "aniosJJOO": [
+      2017,
+      2021
+    ]
+  }
+}
+
+{
+  "ref": Ref(Collection("Gimnasia"), "359559801207783629"),
+  "ts": 1679161797630000,
+  "data": {
+    "nombre": "Alicia Keys",
+    "fechaNacimiento": {
+      "dia": 25,
+      "mes": 10,
+      "año": 1996
+    },
+    "pais": "Alemania",
+    "edad": 27,
+    "modalidad": "pareja_femenina",
+    "grupo": 2,
+    "aniosJJOO": [
+      2017,
+      2021,
+      2025
+    ]
+  }
+}
