@@ -95,7 +95,7 @@ Como he mencionado anteriormente,el incremento 1 constará de:
     <img src='./img/HU2 2.jpg'> 
 
 * **HU4**
-    <img src='./img/HU4.jpg'>
+    <img src='./img/HU4 bien.jpg'>
 
     <img src='./img/HU4 Trello.jpg'>
 
