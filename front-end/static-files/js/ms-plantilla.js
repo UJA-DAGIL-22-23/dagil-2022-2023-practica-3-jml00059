@@ -693,6 +693,33 @@ Plantilla.guardar = async function () {     //no se hace TDD, es async
 }
 
 
+Plantilla.historia10 = function(term1, term2, term3, term4) {
+    this.recuperahistoria10(this.imprime, term1, term2, term3, term4);
+}
+
+Plantilla.recuperahistoria10 = async function(callBackFn, nombre, edad, pais, grupo) {
+    let response = null;
+    try {
+        const url = Frontend.API_GATEWAY + "/plantilla/getTodas";
+        response = await fetch(url);
+    } catch (error) {
+        alert("Error: No se pudo acceder al API Gateway. Intente de nuevo más tarde.");
+        console.error(error);
+    }
+    
+    let vectorPersonas = null;
+    if (response) {
+        vectorPersonas = await response.json();
+        const filtro = vectorPersonas.data.filter(persona => 
+            persona.data.nombre.includes(nombre) && 
+            persona.data.edad.includes(edad) && 
+            persona.data.pais.includes(pais) && 
+            persona.data.grupo.includes(grupo));
+        callBackFn(filtro);
+    }
+}
+
+
 
 
 

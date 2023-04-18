@@ -116,7 +116,6 @@ Frontend.Article.mostrar = function () {
 
 }
 
-
 /**
  * Cambia toda la información del article
  * @param {String} titulo Información para el título del article 

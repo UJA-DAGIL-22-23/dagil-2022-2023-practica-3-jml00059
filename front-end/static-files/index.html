@@ -50,7 +50,26 @@
                 var searchTerm=document.getElementById("search").value;
                 Plantilla.listarParaForm(searchTerm);
             }
-        </script>   
+        </script>
+          <br/>
+          <br/>
+          <h1>Formulario para obtener un jugador introduciendo varios campos</h1>
+          <form>
+             <input type="text" id="nomb" name="nomb" placeholder="Nombre">
+             <input type="text" id="eda" name="eda"  placeholder="Edad">
+             <input type="text" id="pai" name="pai" placeholder="Pais">
+             <input type="text" id="grup" name="grup" placeholder="Grupo">
+             <button type="button" onclick="buscarHistoria10()">Buscar</button>
+         </form>
+         <script>
+            function buscarHistoria10(){
+                var term1 = document.getElementById("nomb").value;
+                var term2 = document.getElementById("eda").value;
+                var term3 = document.getElementById("pai").value;
+                var term4 = document.getElementById("grup").value;
+                Plantilla.historia10(term1,term2,term3,term4);
+             }
+         </script>
     </nav>
 
 
