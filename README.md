@@ -87,6 +87,8 @@ Como he mencionado anteriormente,el incremento 1 constará de:
     <img src='./img/HU2 1.jpg'> 
 
     <img src='./img/HU2 11.jpg'> 
+
+    <img src='./img/imprime.jpg'> 
     
     Y en ms-plantilla -> callbacks.js
     <img src='./img/HU2 111.jpg'> 
@@ -104,16 +106,116 @@ Como he mencionado anteriormente,el incremento 1 constará de:
 
     <img src='./img/HU4 11.jpg'>
 
+    <img src='./img/imprime.jpg'> 
+
     Por último, en el index.html, declaro la etiqueta para llamar a la función:
     <img src='./img/HU4 2.jpg'> 
 
 
 ## Incremento 2
 
+Como he mencionado anteriormente, la iteración 2 consta de:
+* **HU3**
+    <img src='./img/HU3 Trello.jpg'> 
+
+    <img src='./img/HU3 1.jpg'> 
+
+    Como antes, en el ms-plantilla implemento:
+    <img src='./img/HU3 111.jpg'> 
+
+    <img src='./img/HU3 1111.jpg'> 
+
+    <img src='./img/imprime.jpg'> 
+
+    Por último, en el index.html, declaro la etiqueta para llamar a la función:
+    <img src='./img/HU3 11.jpg'> 
+
+* **HU6**
+    <img src='./img/HU6 Trello.jpg'> 
+
+    <img src='./img/HU6 1.jpg'> 
+
+    Como antes, en el ms-plantilla implemento:
+    <img src='./img/HU6 11.jpg'>
+
+    <img src='./img/HU6 111.jpg'>
+
+    <img src='./img/imprime.jpg'> 
+
+    Por último, en el index.html, declaro la etiqueta para llamar a la función:
+    <img src='./img/HU6 2.jpg'>
+
+* **HU12**
+    <img src='./img/HU12.jpg'>
+
+    <img src='./img/HU12 cod1.jpg'>
+
+    <img src='./img/HU12 cod2.jpg'>
+
+    Modifico el nombre de Manuel José Duran por otro.
+    
+    El país si lo modifico, no se guarda. No lo tengo implementado en guardar(), que a su vez llamará al callbacks.setTodo para modificar sólo el nombre. Posteriormente sí lo añadiré para poder modificar más campos
+
+    <img src='./img/HU12 cod3.jpg'>
+
+    <img src='./img/HU12 cod4.jpg'>
+
+    Vemos como se cambia en fauna
+    <img src='./img/HU12 fauna.jpg'>
+
+    En el ms-plantilla he implementado las funciones de recupera, listar 2 e imprime.
+    <img src='./img/imprimeMuchasPersonas.jpg'>
+
+    <img src='./img/HU12 actualiza.jpg'>
+
+    Comentados el resto para que modifique sólo el nombre
+    <img src='./img/HU12 sustituye.jpg'>
+
+    <img src='./img/HU12 guardar.jpg'>
+
+    En el callbacks implemento:
+    <img src='./img/HU12 set.jpg'>
+
+
+## Incremento 3
 
 
 
-La funcionalidad implementada en la plantilla es muy simple: hay dos botones que llaman, respectivamente, a la ruta raíz del microservicio (es decir, ```/plantilla/```) y a la ruta "Acerca de" (```/plantilla/acercade```) siempre usando como intermediario a la aplicación *api-gateway*.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Las siguientes imágenes muestran la interfaz de la aplicación una vez puesta en marcha:
 
