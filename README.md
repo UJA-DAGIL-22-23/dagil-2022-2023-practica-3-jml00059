@@ -69,7 +69,8 @@
 
 ## Incremento 1
 Como he mencionado anteriormente,el incremento 1 constará de:
-* **HU1**
+* **HU1-> Ver la información del autor**
+
     <img src='./img/HU1 Trello.jpg'> 
     
     <img src='./img/HU1.jpg'> 
@@ -78,7 +79,7 @@ Como he mencionado anteriormente,el incremento 1 constará de:
 
     <img src='./img/HU1 codigo.jpg'> 
 
-* **HU2**
+* **HU2-> Nombres de los jugadores**
     <img src='./img/HU2 Trello.jpg'> 
     
     <img src='./img/HU2.jpg'> 
@@ -96,7 +97,7 @@ Como he mencionado anteriormente,el incremento 1 constará de:
     Por último, en el index.html, declaro la etiqueta para llamar a la función:
     <img src='./img/HU2 2.jpg'> 
 
-* **HU4**
+* **HU4 -> Todos los datos de todos los jugadores**
     <img src='./img/HU4 Trello.jpg'>
     
     <img src='./img/HU4 bien.jpg'>
@@ -115,7 +116,7 @@ Como he mencionado anteriormente,el incremento 1 constará de:
 ## Incremento 2
 
 Como he mencionado anteriormente, el incremento 2 constará de:
-* **HU3**
+* **HU3-> Nombres ordenados alfabéticamente**
     <img src='./img/HU3 Trello.jpg'> 
 
     <img src='./img/HU3 1.jpg'> 
@@ -130,7 +131,7 @@ Como he mencionado anteriormente, el incremento 2 constará de:
     Por último, en el index.html, declaro la etiqueta para llamar a la función:
     <img src='./img/HU3 11.jpg'> 
 
-* **HU6**
+* **HU6-> Todos los datos de un determinado jugador**
     <img src='./img/HU6 Trello.jpg'> 
 
     <img src='./img/HU6 1.jpg'> 
@@ -142,10 +143,10 @@ Como he mencionado anteriormente, el incremento 2 constará de:
 
     <img src='./img/imprime.jpg'> 
 
-    Por último, en el index.html, declaro la etiqueta para llamar a la función:
+    Por último, en el index.html, declaro la etiqueta para llamar a la función y el id de Marta Ruiz:
     <img src='./img/HU6 2.jpg'>
 
-* **HU12**
+* **HU12-> Modificar el nombre de un jugador**
     <img src='./img/HU12.jpg'>
 
     <img src='./img/HU12 cod1.jpg'>
@@ -186,7 +187,7 @@ Como he mencionado anteriormente, el incremento 2 constará de:
 ## Incremento 3
 
 Como he mencionado antes, el incremento 3 constará de:
-* **HU8**
+* **HU8-> Datos de un jugador indicando nombre y apellidos**
     <img src='./img/HU8 Trello.jpg'>
 
     <img src='./img/HU8 1 antes.jpg'>
@@ -204,20 +205,19 @@ Como he mencionado antes, el incremento 3 constará de:
     Y en el index el formulario que llame a ambas funciones:
     <img src='./img/HU8 index.jpg'>
 
-* **HU10**
+* **HU10-> Datos de un jugador indicando varios campos**
     <img src='./img/HU10 Trello.jpg'>
 
     Introducimos un nombre,edad,pais y grupo de un jugador y le damos a buscar
     <img src='./img/HU10 1.jpg'>
 
     Como antes, en el ms-plantilla implemento:
-    
     <img src='./img/HU10 11.jpg'>
 
     Y en el index, el formulario que llama a ambas funciones:
     <img src='./img/HU10 2.jpg'>
 
-* **HU13**
+* **HU13-> Modificar varios datos de un jugador**
     <img src='./img/HU13.jpg'>
 
     <img src='./img/HU12 cod1.jpg'>
