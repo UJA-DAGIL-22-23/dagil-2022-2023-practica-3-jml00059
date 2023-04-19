@@ -211,6 +211,7 @@ Como he mencionado antes, el incremento 3 constará de:
     <img src='./img/HU10 1.jpg'>
 
     Como antes, en el ms-plantilla implemento:
+    
     <img src='./img/HU10 11.jpg'>
 
     Y en el index, el formulario que llama a ambas funciones:
