@@ -70,18 +70,18 @@
 ## Incremento 1
 Como he mencionado anteriormente,el incremento 1 constará de:
 * **HU1**
-    <img src='./img/HU1.jpg'> 
-
     <img src='./img/HU1 Trello.jpg'> 
+    
+    <img src='./img/HU1.jpg'> 
 
     En ms-plantilla -> callbacks.js he modificado:
 
     <img src='./img/HU1 codigo.jpg'> 
 
 * **HU2**
-    <img src='./img/HU2.jpg'> 
-
     <img src='./img/HU2 Trello.jpg'> 
+    
+    <img src='./img/HU2.jpg'> 
 
     Primero,en el ms-plantilla.js implemento:
     <img src='./img/HU2 1.jpg'> 
@@ -97,9 +97,9 @@ Como he mencionado anteriormente,el incremento 1 constará de:
     <img src='./img/HU2 2.jpg'> 
 
 * **HU4**
-    <img src='./img/HU4 bien.jpg'>
-
     <img src='./img/HU4 Trello.jpg'>
+    
+    <img src='./img/HU4 bien.jpg'>
 
     Como antes, en el ms-plantilla implemento:
     <img src='./img/HU4 1.jpg'>
@@ -163,7 +163,7 @@ Como he mencionado anteriormente, la iteración 2 consta de:
     Vemos como se cambia en fauna
     <img src='./img/HU12 fauna.jpg'>
 
-    En el ms-plantilla he implementado las funciones de recupera, listar 2 e imprime.
+    En el ms-plantilla he implementado las funciones de recupera, listar2 e imprime.
     <img src='./img/imprimeMuchasPersonas.jpg'>
 
     <img src='./img/HU12 actualiza.jpg'>
@@ -175,6 +175,9 @@ Como he mencionado anteriormente, la iteración 2 consta de:
 
     En el callbacks implemento:
     <img src='./img/HU12 set.jpg'>
+
+    Por último, en el index:
+    <img src='./img/HU12 index.jpg'>
 
 
 ## Incremento 3
